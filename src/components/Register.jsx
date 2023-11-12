@@ -2,8 +2,7 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import styles from './Login.module.css'
 import { useState } from 'react';
-import { auth } from '../firebase';
-import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { createUserWithEmailAndPassword, getAuth } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
 
 const Register = () => {
@@ -13,8 +12,9 @@ const Register = () => {
 
     const register = (e) => {
         e.preventDefault();
-        createUserWithEmailAndPassword(auth, email, password)
 
+        const auth = getAuth();
+        createUserWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
                 navigate('/login');
             })

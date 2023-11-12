@@ -10,8 +10,10 @@ const Authentication = () => {
     useEffect(() => {
         const listenAuth = onAuthStateChanged(auth, (user) => {
             if (user) {
+                console.log(user)
                 setAuthenticatedUser(user)
             } else {
+                console.log('no user')
                 setAuthenticatedUser(null)
             }
         })

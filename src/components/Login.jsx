@@ -2,8 +2,7 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import styles from './Login.module.css'
 import { useState } from 'react';
-import { auth } from '../firebase';
-import { signInWithEmailAndPassword } from 'firebase/auth';
+import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
 
 
@@ -14,10 +13,10 @@ const Login = () => {
 
     const signIn = (e) => {
         e.preventDefault();
-        signInWithEmailAndPassword(auth, email, password)
-            .then((userCredential) => {
-                navigate('/')
-            })
+
+        const auth = getAuth();
+        return signInWithEmailAndPassword(auth, email, password)
+            .then(navigate('/'))
             .catch((error) => {
                 console.log(error);
             });
