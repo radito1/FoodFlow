@@ -1,22 +1,22 @@
 import Form from 'react-bootstrap/Form';
-import FormControl from 'react-bootstrap/FormControl'
 import Button from 'react-bootstrap/Button';
 import styles from './Login.module.css'
 import { useState } from 'react';
-import { app, auth } from '../firebase';
+import { auth } from '../firebase';
 import { signInWithEmailAndPassword } from 'firebase/auth';
+import { useNavigate } from 'react-router-dom';
+
 
 const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const navigate = useNavigate('');
 
     const signIn = (e) => {
         e.preventDefault();
         signInWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
-                // Signed in 
-                console.log(userCredential)
-                // ...
+                navigate('/')
             })
             .catch((error) => {
                 console.log(error);

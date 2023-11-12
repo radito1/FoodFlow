@@ -2,21 +2,21 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import styles from './Login.module.css'
 import { useState } from 'react';
-import { app, auth } from '../firebase';
+import { auth } from '../firebase';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { useNavigate } from 'react-router-dom';
 
 const Register = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const navigate = useNavigate('');
 
     const register = (e) => {
         e.preventDefault();
         createUserWithEmailAndPassword(auth, email, password)
-        
+
             .then((userCredential) => {
-                // Signed in 
-                console.log(userCredential)
-                // ...
+                navigate('/login');
             })
             .catch((error) => {
                 console.log(error);
@@ -31,7 +31,7 @@ const Register = () => {
         setPassword(e.target.value);
     };
 
-    
+
     return (
         <div className={styles['form-container']}>
             <h2>REGISTER</h2>
@@ -44,7 +44,7 @@ const Register = () => {
                     <Form.Label>Password</Form.Label>
                     <Form.Control type="password" value={password} onChange={passwordChangeHandler} placeholder="Password" />
                 </Form.Group>
-                <Button variant="primary" type="submit"> 
+                <Button variant="primary" type="submit">
                     Register
                 </Button>
             </Form>
