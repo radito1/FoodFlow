@@ -1,7 +1,7 @@
 import Form from 'react-bootstrap/Form';
 import styles from './Login.module.css'
 
-function Login() {
+const Login = () => {
     return (
         <div className={styles['form-container']}>
             <Form>
