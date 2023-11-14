@@ -11,7 +11,7 @@ const Catalog = () => {
             try {
                 const recipesData = await dataService.getAll();
                 if (recipesData) {
-                    const recipesArray = Object.values(recipesData)
+                    const recipesArray = Object.entries(recipesData).map(([key, value]) => ({ id: key, ...value }));
                     setRecipes(recipesArray);
                 }
             } catch (error) {
@@ -24,8 +24,7 @@ const Catalog = () => {
 
     return (
         <div className={styles['catalog-container']}>
-            {/* TODO = Change key to be unique */}
-            {recipes.map(recipe => <RecipeCard key={recipe.recipeName} {...recipe} />)}
+            {recipes.map(recipe => <RecipeCard key={recipe.id} {...recipe} />)}
         </div>
     );
 }

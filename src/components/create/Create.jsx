@@ -42,14 +42,13 @@ function Create() {
     };
 
     const saveRecipe = () => {
-
         let data = {
             recipeName: recipe.recipeName,
             recipeText: recipe.recipeText,
             category: recipe.category,
             owner: authenticatedUser.uid
         };
-
+        
         dataService.create(data)
             .then(() => {
                 navigate('/')
@@ -58,7 +57,6 @@ function Create() {
                 console.log(e);
             });
     };
-
 
     return (
         <div className={styles['form-container']}>
