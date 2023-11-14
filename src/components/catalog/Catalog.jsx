@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import dataService from '../../services/dataService';
 import RecipeCard from '../recipeCard/RecipeCard';
-import styles from './Catalog.module.css'
+import './catalog.css';
 
 const Catalog = () => {
     const [recipes, setRecipes] = useState([]);
@@ -23,7 +23,7 @@ const Catalog = () => {
     }, []);
 
     return (
-        <div className={styles['catalog-container']}>
+        <div className='catalog-container'>
             {recipes.map(recipe => <RecipeCard key={recipe.id} {...recipe} />)}
         </div>
     );

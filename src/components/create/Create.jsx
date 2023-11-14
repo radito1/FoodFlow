@@ -1,11 +1,11 @@
 import Form from 'react-bootstrap/Form';
-import styles from './Create.module.css';
 import dataService from '../../services/dataService';
 import { Button } from 'react-bootstrap';
 import { useEffect, useState } from 'react';
 import { onAuthStateChanged } from 'firebase/auth';
 import { auth } from '../../firebase';
 import { useNavigate } from 'react-router-dom';
+import './create.css'
 
 function Create() {
     const initialState = {
@@ -59,8 +59,8 @@ function Create() {
     };
 
     return (
-        <div className={styles['form-container']}>
-            <Form className={styles.form}>
+        <div className='form-container'>
+            <Form className='form'>
                 <Form.Group controlId="exampleForm.ControlInput1">
                     <Form.Label>Recipe</Form.Label>
                     <Form.Control type="text"
