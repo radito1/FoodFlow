@@ -4,7 +4,7 @@ import Navigation from "./components/Navigation"
 import Home from "./components/Home"
 import Register from "./components/Register"
 import Create from "./components/create/Create"
-import RecipeCard from "./components/recipeCard/RecipeCard"
+import Catalog from "./components/catalog/Catalog"
 
 
 const App = () => {
@@ -17,7 +17,7 @@ const App = () => {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/create" element={<Create />} />
-        <Route path="/catalog/see-all" element={<RecipeCard />} />            
+        <Route path="/catalog/see-all" element={<Catalog />} />            
       </Routes>
     </>
   )
