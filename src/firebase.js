@@ -1,6 +1,7 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
+import "firebase/database";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -8,6 +9,7 @@ import { getAuth } from "firebase/auth";
 const firebaseConfig = {
   apiKey: "AIzaSyBNPgoSuYjyd_Ln5_vOp-EYdxKL0ovKuik",
   authDomain: "foodflow-1a2eb.firebaseapp.com",
+  databaseURL: "https://foodflow-1a2eb-default-rtdb.europe-west1.firebasedatabase.app",
   projectId: "foodflow-1a2eb",
   storageBucket: "foodflow-1a2eb.appspot.com",
   messagingSenderId: "323643009181",
@@ -18,4 +20,5 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
+export default firebase.database();
 export {app,auth}
