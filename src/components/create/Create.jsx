@@ -2,58 +2,73 @@ import Form from 'react-bootstrap/Form';
 import styles from './Create.module.css';
 import dataService from '../../services/dataService';
 import { Button } from 'react-bootstrap';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { onAuthStateChanged } from 'firebase/auth';
+import { auth } from '../../firebase';
+import { useNavigate } from 'react-router-dom';
 
 function Create() {
     const initialState = {
         recipeName: '',
         recipeText: '',
     };
-    const [tutorial, setTutorial] = useState(initialState);
-    const [submitted, setSubmitted] = useState(false);
+    const [recipe, setRecipe] = useState(initialState);
+    const [authenticatedUser, setAuthenticatedUser] = useState('');
+    const navigate = useNavigate('');
+
+    useEffect(() => {
+        const listenAuth = onAuthStateChanged(auth, (user) => {
+            if (user) {
+                setAuthenticatedUser(user)
+            } else {
+                navigate('/');
+            }
+        })
+
+        return () => {
+            listenAuth();
+        }
+    }, [])
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
-        setTutorial({ ...tutorial, [name]: value });
+        setRecipe({ ...recipe, [name]: value });
     };
 
-    const saveTutorial = () => {
+    const saveRecipe = () => {
 
         let data = {
-            recipeName: tutorial.recipeName,
-            recipeText: tutorial.recipeText
+            recipeName: recipe.recipeName,
+            recipeText: recipe.recipeText,
+            owner: authenticatedUser.uid
         };
 
         dataService.create(data)
             .then(() => {
-                setSubmitted(true);
+                navigate('/')
             })
             .catch(e => {
                 console.log(e);
             });
     };
 
-    // const newTutorial = () => {
-    //     setTutorial(initialTutorialState);
-    //     setSubmitted(false);
-    // };
 
     return (
         <div className={styles['form-container']}>
             <Form>
                 <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
                     <Form.Label>Recipe</Form.Label>
-                    <Form.Control type="text" value={tutorial.recipeName}
+                    <Form.Control type="text" value={recipe.recipeName}
                         onChange={handleInputChange}
                         name="recipeName" placeholder="musaka" />
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
                     <Form.Label>Recipe text</Form.Label>
-                    <Form.Control as="textarea" value={tutorial.recipeText}
+                    <Form.Control as="textarea" value={recipe.recipeText}
                         onChange={handleInputChange}
                         name="recipeText" rows={3} />
                 </Form.Group>
-                <Button variant="primary" onClick={saveTutorial}>
+                <Button variant="primary" onClick={saveRecipe}>
                     Submit
                 </Button>
             </Form>
