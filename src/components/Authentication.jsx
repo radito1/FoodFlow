@@ -13,7 +13,6 @@ const Authentication = () => {
             if (user) {                
                 setAuthenticatedUser(user)
             } else {
-                console.log('no user')
                 setAuthenticatedUser(null)
             }
         })
