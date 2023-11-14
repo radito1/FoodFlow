@@ -1,10 +1,21 @@
-import { ref, push, set, update, remove } from 'firebase/database';
+import { ref, push, set, update, remove, get } from 'firebase/database';
 import { database } from '../firebase';
 
 const recipeRef = ref(database, '/recipe');
 
-const getAll = () => {
-  return recipeRef;
+const getAll = async () => {
+  try {
+    const snapshot = await get(recipeRef);
+    if (snapshot.exists()) {
+      return snapshot.val();
+    } else {
+      console.log('No data available');
+      return null;
+    }
+  } catch (error) {
+    console.error('Error fetching data:', error);
+    throw error;
+  }
 };
 
 const create = (data) => {

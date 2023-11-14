@@ -16,15 +16,13 @@ const Navigation = () => {
                         <Nav.Link href="#features">Features</Nav.Link>
                         <Nav.Link href="#pricing">How it works</Nav.Link>
                         <NavDropdown title="Categories" id="collapsible-nav-dropdown">
+                            <NavDropdown.Item as={Link} to="/catalog/see-all">See all</NavDropdown.Item>
+                            <NavDropdown.Divider />
                             <NavDropdown.Item href="#action/3.1">Burger</NavDropdown.Item>
                             <NavDropdown.Item href="#action/3.2">
                                 Meat
                             </NavDropdown.Item>
                             <NavDropdown.Item href="#action/3.3">Soups</NavDropdown.Item>
-                            <NavDropdown.Divider />
-                            <NavDropdown.Item href="#action/3.4">
-                                See all 
-                            </NavDropdown.Item>
                         </NavDropdown>
                     </Nav>
                     <Nav>
