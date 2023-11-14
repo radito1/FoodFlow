@@ -19,9 +19,7 @@ const Navigation = () => {
                             <NavDropdown.Item as={Link} to="/catalog/see-all">See all</NavDropdown.Item>
                             <NavDropdown.Divider />
                             <NavDropdown.Item href="#action/3.1">Burger</NavDropdown.Item>
-                            <NavDropdown.Item href="#action/3.2">
-                                Meat
-                            </NavDropdown.Item>
+                            <NavDropdown.Item href="#action/3.2">Meat</NavDropdown.Item>
                             <NavDropdown.Item href="#action/3.3">Soups</NavDropdown.Item>
                         </NavDropdown>
                     </Nav>

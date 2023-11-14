@@ -48,7 +48,7 @@ function Create() {
             category: recipe.category,
             owner: authenticatedUser.uid
         };
-        
+
         dataService.create(data)
             .then(() => {
                 navigate('/')

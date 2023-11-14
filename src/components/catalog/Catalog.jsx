@@ -20,9 +20,12 @@ const Catalog = () => {
         };
 
         fetchData();
+
+        // TODO: maybe I need to add something the check for changes
     }, []);
 
     return (
+        // TODO: I have to add text if there are no recipes to show
         <div className='catalog-container'>
             {recipes.map(recipe => <RecipeCard key={recipe.id} {...recipe} />)}
         </div>
