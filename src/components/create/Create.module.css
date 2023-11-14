@@ -3,3 +3,11 @@
     justify-content: center;
     margin-top: 200px;
 }
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    border: 1px solid gray;
+    padding: 30px;
+}
