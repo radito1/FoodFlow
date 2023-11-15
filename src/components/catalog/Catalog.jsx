@@ -3,26 +3,44 @@ import dataService from '../../services/dataService';
 import RecipeCard from '../recipeCard/RecipeCard';
 import './catalog.css';
 
-const Catalog = () => {
+const Catalog = ({ category }) => {
     const [recipes, setRecipes] = useState([]);
 
     useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const recipesData = await dataService.getAll();
-                if (recipesData) {
-                    const recipesArray = Object.entries(recipesData).map(([key, value]) => ({ id: key, ...value }));
-                    setRecipes(recipesArray);
+
+        if (category) {
+            console.log(category)
+            const fetchData = async () => {
+                try {
+                    const recipesData = await dataService.getByFilter('category', `${category}`);
+                    if (recipesData) {
+                        const recipesArray = Object.entries(recipesData).map(([key, value]) => ({ id: key, ...value }));
+                        setRecipes(recipesArray);
+                    }
+                } catch (error) {
+                    console.error('Error fetching data:', error);
                 }
-            } catch (error) {
-                console.error('Error fetching data:', error);
-            }
-        };
+            };
 
-        fetchData();
+            fetchData();
+        } else {
+            const fetchData = async () => {
+                try {
+                    const recipesData = await dataService.getAll();
+                    if (recipesData) {
+                        const recipesArray = Object.entries(recipesData).map(([key, value]) => ({ id: key, ...value }));
+                        setRecipes(recipesArray);
+                    }
+                } catch (error) {
+                    console.error('Error fetching data:', error);
+                }
+            };
 
+            fetchData();
+        }
+        console.log('ujas')
         // TODO: maybe I need to add something the check for changes
-    }, []);
+    }, [category]);
 
     return (
         // TODO: I have to add text if there are no recipes to show

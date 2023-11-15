@@ -1,4 +1,4 @@
-import { ref, push, set, update, remove, get } from 'firebase/database';
+import { ref, push, set, update, remove, get, orderByChild, equalTo, query } from 'firebase/database';
 import { database } from '../firebase';
 
 const recipeRef = ref(database, '/recipe');
@@ -14,6 +14,28 @@ const getAll = async () => {
     }
   } catch (error) {
     console.error('Error fetching data:', error);
+    throw error;
+  }
+};
+
+const getByFilter = async (filterKey, filterValue) => {
+  try {
+    const filteredSnapshot = await get(
+      query(
+        recipeRef,
+        orderByChild(filterKey),
+        equalTo(filterValue)
+      )
+    );
+
+    if (filteredSnapshot.exists()) {
+      return filteredSnapshot.val();
+    } else {
+      console.log('No matching data');
+      return null;
+    }
+  } catch (error) {
+    console.error('Error fetching filtered data:', error);
     throw error;
   }
 };
@@ -45,4 +67,5 @@ export default {
   updateRecipe,
   removeRecipe,
   removeAllRecipes,
+  getByFilter
 };
