@@ -9,7 +9,6 @@ const Catalog = ({ category }) => {
     useEffect(() => {
 
         if (category) {
-            console.log(category)
             const fetchData = async () => {
                 try {
                     const recipesData = await dataService.getByFilter('category', `${category}`);
@@ -38,7 +37,6 @@ const Catalog = ({ category }) => {
 
             fetchData();
         }
-        console.log('ujas')
         // TODO: maybe I need to add something the check for changes
     }, [category]);
 
