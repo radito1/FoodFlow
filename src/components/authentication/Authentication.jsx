@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Nav from "react-bootstrap/Nav";
 import { Link } from "react-router-dom";
 import { onAuthStateChanged, signOut } from "firebase/auth";
-import { auth } from "../firebase";
+import { auth } from "../../firebase";
 import { NavDropdown } from "react-bootstrap";
 
 const Authentication = () => {

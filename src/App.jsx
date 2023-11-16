@@ -1,8 +1,8 @@
 import { Route, Routes } from "react-router-dom"
-import Login from "./components/Login"
-import Navigation from "./components/Navigation"
+import Login from "./components/login/Login"
+import Navigation from "./components/navigation/Navigation"
 import Home from "./components/home/Home"
-import Register from "./components/Register"
+import Register from "./components/register/Register"
 import Create from "./components/create/Create"
 import Catalog from "./components/catalog/Catalog"
 
