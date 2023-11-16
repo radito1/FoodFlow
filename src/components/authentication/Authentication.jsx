@@ -38,7 +38,7 @@ const Authentication = () => {
                     <Nav.Link as={Link} to="/register">Register</Nav.Link>
                 </> :
                 <>
-                    <NavDropdown title={`${authenticatedUser.email}`} id="collapsible-nav-dropdown">
+                    <NavDropdown title={`${authenticatedUser.displayName}`} id="collapsible-nav-dropdown">
                         <NavDropdown.Item as={Link} to="/create">Create</NavDropdown.Item>
                     </NavDropdown>
                     <Nav.Link as={Link} onClick={userLogOut} to="/">Log Out</Nav.Link>

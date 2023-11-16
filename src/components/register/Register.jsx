@@ -2,7 +2,7 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import '../login/login.css'
 import { useState } from 'react';
-import { createUserWithEmailAndPassword, getAuth } from 'firebase/auth';
+import { createUserWithEmailAndPassword, getAuth, updateProfile } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
 import userService from '../../services/userService';
 
@@ -24,13 +24,13 @@ const Register = () => {
         setPassword(e.target.value);
     };
 
-    const saveUser = () => {
+    const saveUser = (uid) => {
         let data = {
             email: email,
             username: username,
-            posts: []
+            uid: uid,
         }
-        userService.create(data)
+        userService.create(data, uid)
             .then(() => {
             })
             .catch(e => {
@@ -44,7 +44,8 @@ const Register = () => {
         const auth = getAuth();
         createUserWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
-                saveUser();
+                updateProfile(userCredential.user, { displayName: username })
+                saveUser(userCredential.user.uid);
                 navigate('/');
             })
             .catch((error) => {
@@ -56,7 +57,7 @@ const Register = () => {
         <div className='form-container'>
             <h2>REGISTER</h2>
             <Form onSubmit={register}>
-            <Form.Group className="mb-3" controlId="formGroupUsername">
+                <Form.Group className="mb-3" controlId="formGroupUsername">
                     <Form.Label>Username</Form.Label>
                     <Form.Control type="username" value={username} onChange={usernameChangeHandler} placeholder="Enter username" />
                 </Form.Group>

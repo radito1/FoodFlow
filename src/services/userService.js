@@ -1,12 +1,11 @@
 import { ref, push, set, update, remove, get, orderByChild, equalTo, query } from 'firebase/database';
 import { database } from '../firebase';
 
-const recipeRef = ref(database, '/users');
+const userRef = ref(database, '/users');
 
-const create = (data) => {
-    // Push data to a new auto-generated key
-    const newRecipeRef = push(recipeRef);
-    return set(newRecipeRef, data);
+const create = (data, uid) => {
+    const userRef = ref(database, `/users/${uid}`);
+    return set(userRef, data);
 };
 
 export default {
