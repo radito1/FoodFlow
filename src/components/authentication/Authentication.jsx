@@ -40,6 +40,7 @@ const Authentication = () => {
                 <>
                     <NavDropdown title={`${authenticatedUser.displayName}`} id="collapsible-nav-dropdown">
                         <NavDropdown.Item as={Link} to="/create">Create</NavDropdown.Item>
+                        <NavDropdown.Item as={Link} to="/my-recipes">My recipes</NavDropdown.Item>
                     </NavDropdown>
                     <Nav.Link as={Link} onClick={userLogOut} to="/">Log Out</Nav.Link>
                 </>

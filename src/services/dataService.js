@@ -9,7 +9,7 @@ const getAll = async () => {
     if (snapshot.exists()) {
       return snapshot.val();
     } else {
-      console.log('No data available');
+      console.log('No recipes available');
       return null;
     }
   } catch (error) {
@@ -31,8 +31,7 @@ const getByFilter = async (filterKey, filterValue) => {
     if (filteredSnapshot.exists()) {
       return filteredSnapshot.val();
     } else {
-      console.log('No matching data');
-      return null;
+      return false;
     }
   } catch (error) {
     console.error('Error fetching filtered data:', error);

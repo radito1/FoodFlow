@@ -12,6 +12,7 @@ function Create() {
         recipeName: '',
         recipeText: '',
         category: '',
+        time: '',
     };
     const [recipe, setRecipe] = useState(initialState);
     const [authenticatedUser, setAuthenticatedUser] = useState('');
@@ -41,12 +42,18 @@ function Create() {
         setRecipe({ ...recipe, category: value });
     };
 
+    const handleTimeChange = (e) => {
+        const { value } = e.target;
+        setRecipe({ ...recipe, time: value });
+    };
+
     const saveRecipe = () => {
         let data = {
             recipeName: recipe.recipeName,
             recipeText: recipe.recipeText,
             category: recipe.category,
-            owner: authenticatedUser.uid
+            time: recipe.time,
+            owner: authenticatedUser.uid,
         };
 
         dataService.create(data)
@@ -69,13 +76,6 @@ function Create() {
                         name="recipeName"
                         placeholder="musaka" />
                 </Form.Group>
-                <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
-                    <Form.Label>Recipe text</Form.Label>
-                    <Form.Control as="textarea"
-                        value={recipe.recipeText}
-                        onChange={handleInputChange}
-                        name="recipeText" rows={3} />
-                </Form.Group>
                 <Form.Group className="mb-3">
                     <Form.Select aria-label="Default select example" onChange={handleCategoryChange} value={recipe.category}>
                         <option>Select Category</option>
@@ -83,6 +83,28 @@ function Create() {
                         <option>Soups</option>
                         <option>Chicken</option>
                     </Form.Select>
+                </Form.Group>
+                <Form.Group className="mb-3">
+                    <Form.Select aria-label="Default select example" onChange={handleTimeChange} value={recipe.time}>
+                        <option>Select preparation time</option>
+                        <option>less then 15min</option>
+                        <option>15min</option>
+                        <option>30min</option>
+                        <option>45min</option>
+                        <option>1hour</option>
+                        <option>1h:15min</option>
+                        <option>1h:30min</option>
+                        <option>1h:45min</option>
+                        <option>2hours</option>
+                        <option>more then 2 hours</option>
+                    </Form.Select>
+                </Form.Group>
+                <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
+                    <Form.Label>Recipe text</Form.Label>
+                    <Form.Control as="textarea"
+                        value={recipe.recipeText}
+                        onChange={handleInputChange}
+                        name="recipeText" rows={3} />
                 </Form.Group>
                 <Button variant="primary" onClick={saveRecipe}>
                     Submit
