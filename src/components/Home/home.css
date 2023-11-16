@@ -1,5 +1,15 @@
 .home-container {
     display: flex;
     justify-content: center;
-    margin-top: 200px;
+    padding: 50px 100px;
+}
+
+.heading  {
+    display: flex;
+    justify-content: center;
+}
+
+.text-container {
+    max-width: 600px;
+    text-align: center;
 }
