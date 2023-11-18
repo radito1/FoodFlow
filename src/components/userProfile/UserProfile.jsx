@@ -1,6 +1,11 @@
+import { useState } from "react";
 import "./userProfile.css"
+import Button from 'react-bootstrap/Button';
+import EditProfileModal from "../editUser/EditUserModal";
 
-const UserProfile = ({user}) => {
+const UserProfile = ({ user }) => {
+    const [modalShow, setModalShow] = useState(false);
+
     return (
         <>
             <div class="form-container ">
@@ -32,7 +37,14 @@ const UserProfile = ({user}) => {
                 <div class="row margin-top">
                     <p>info za men</p>
                 </div>
+                <Button variant="primary" onClick={() => setModalShow(true)}>
+                    Edit profile
+                </Button>
 
+                <EditProfileModal
+                    show={modalShow}
+                    onHide={() => setModalShow(false)}
+                />
             </div >
         </>
     );
