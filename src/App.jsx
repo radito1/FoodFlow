@@ -8,6 +8,7 @@ import Catalog from "./components/catalog/Catalog"
 import { useEffect, useState } from "react"
 import { onAuthStateChanged } from "firebase/auth"
 import { auth } from "./firebase"
+import UserProfile from "./components/userProfile/UserProfile"
 
 
 const App = () => {
@@ -39,6 +40,7 @@ const App = () => {
                 <Route path="/my-recipes" element={<Catalog uid={authenticatedUser?.uid} />} />
                 <Route path="/catalog/see-all" element={<Catalog all/>} />
                 <Route path="/catalog/soups" element={<Catalog category={'Soups'} />} />
+                <Route path="/my-profile" element={<UserProfile/>} />
             </Routes>
         </>
     )

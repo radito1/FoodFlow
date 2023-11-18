@@ -10,7 +10,7 @@ const Authentication = () => {
 
     useEffect(() => {
         const listenAuth = onAuthStateChanged(auth, (user) => {
-            if (user) {                
+            if (user) {
                 setAuthenticatedUser(user)
             } else {
                 setAuthenticatedUser(null)
@@ -39,10 +39,12 @@ const Authentication = () => {
                 </> :
                 <>
                     <NavDropdown title={`${authenticatedUser.displayName}`} id="collapsible-nav-dropdown">
+                        <NavDropdown.Item as={Link} to="/my-profile">My profile</NavDropdown.Item>
                         <NavDropdown.Item as={Link} to="/create">Create</NavDropdown.Item>
                         <NavDropdown.Item as={Link} to="/my-recipes">My recipes</NavDropdown.Item>
+                        <NavDropdown.Divider />
+                        <NavDropdown.Item as={Link} onClick={userLogOut} to="/">Log Out</NavDropdown.Item>
                     </NavDropdown>
-                    <Nav.Link as={Link} onClick={userLogOut} to="/">Log Out</Nav.Link>
                 </>
             }
         </>
