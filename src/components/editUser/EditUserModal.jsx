@@ -27,8 +27,8 @@ const EditProfileModal = (props) => {
                         <Form.Control id="last-name" value="Kehadzhiyski" />
                     </Form.Group>
                     <Form.Group className="mb-3">
-                        <Form.Label htmlFor="disabledTextInput">Email</Form.Label>
-                        <Form.Control id="email" placeholder="rado@abv.bg" disabled />
+                        <Form.Label htmlFor="disabledTextInput">Adress</Form.Label>
+                        <Form.Control id="address" value="addressa mi"/>
                     </Form.Group>
                     <Form.Group className="mb-3 text-area">
                         <Form.Label htmlFor="disabledTextInput">Description</Form.Label>
