@@ -40,7 +40,7 @@ const App = () => {
                 <Route path="/my-recipes" element={<Catalog uid={authenticatedUser?.uid} />} />
                 <Route path="/catalog/see-all" element={<Catalog all/>} />
                 <Route path="/catalog/soups" element={<Catalog category={'Soups'} />} />
-                <Route path="/my-profile" element={<UserProfile/>} />
+                <Route path="/my-profile" element={<UserProfile user={authenticatedUser}/>} />
             </Routes>
         </>
     )
