@@ -1,10 +1,31 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./userProfile.css"
 import Button from 'react-bootstrap/Button';
 import EditProfileModal from "../editUser/EditUserModal";
+import userService from "../../services/userService"
 
 const UserProfile = ({ user }) => {
     const [modalShow, setModalShow] = useState(false);
+    const [userData, setUserData] = useState({});
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                if (user && user.uid) {
+                    const data = await userService.getUserData(user.uid);
+                    setUserData(data);
+                } else {
+                    console.log("User object or UID is undefined.");
+                }
+            } catch (e) {
+                console.error(e);
+            }
+        };
+
+        fetchData();
+        console.log(userData)
+    }, [user]);
+
     return (
         <>
             <div className="form-container">
@@ -50,6 +71,7 @@ const UserProfile = ({ user }) => {
                 <EditProfileModal
                     show={modalShow}
                     onHide={() => setModalShow(false)}
+                    uid = {user.uid}
                 />
             </div >
         </>
