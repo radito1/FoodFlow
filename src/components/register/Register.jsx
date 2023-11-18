@@ -55,7 +55,7 @@ const Register = () => {
 
     return (
         <div className='form-container'>
-            <h2>REGISTER</h2>
+            <h2>Register</h2>
             <Form onSubmit={register}>
                 <Form.Group className="mb-3" controlId="formGroupUsername">
                     <Form.Label>Username</Form.Label>
@@ -69,9 +69,11 @@ const Register = () => {
                     <Form.Label>Password</Form.Label>
                     <Form.Control type="password" value={password} onChange={passwordChangeHandler} placeholder="Password" />
                 </Form.Group>
-                <Button variant="primary" type="submit">
-                    Register
-                </Button>
+                <div className='button-container'>
+                    <Button variant="primary" type="submit">
+                        Register
+                    </Button>
+                </div>
             </Form>
         </div>
 

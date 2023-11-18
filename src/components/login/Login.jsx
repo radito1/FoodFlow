@@ -1,6 +1,6 @@
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-import'./login.css'
+import './login.css'
 import { useState } from 'react';
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
@@ -34,9 +34,11 @@ const Login = () => {
                     <Form.Label>Password</Form.Label>
                     <Form.Control type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Password" />
                 </Form.Group>
-                <Button variant="primary" type="submit">
-                    Login
-                </Button>
+                <div className='button-container'>
+                    <Button variant="primary" type="submit">
+                        Login
+                    </Button>
+                </div>
             </Form>
         </div>
 
