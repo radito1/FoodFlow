@@ -1,6 +1,5 @@
 .catalog-container {
     display: flex;
     gap: 20px;
-
-    padding: 50px;
+    padding: 100px;
 }

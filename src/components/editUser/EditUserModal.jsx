@@ -1,5 +1,7 @@
 import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
+import "./editUserModal.css"
 
 const EditProfileModal = (props) => {
     return (
@@ -11,15 +13,28 @@ const EditProfileModal = (props) => {
         >
             <Modal.Header closeButton>
                 <Modal.Title id="contained-modal-title-vcenter">
-                Edit Profile
+                    Edit Profile
                 </Modal.Title>
             </Modal.Header>
             <Modal.Body>
-                <p>
-                    Cras mattis consectetur purus sit amet fermentum. Cras justo odio,
-                    dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac
-                    consectetur ac, vestibulum at eros.
-                </p>
+                <Form>
+                    <Form.Group className="mb-3">
+                        <Form.Label htmlFor="disabledTextInput">First Name</Form.Label>
+                        <Form.Control id="first-name" value="Radoslav" />
+                    </Form.Group>
+                    <Form.Group className="mb-3">
+                        <Form.Label htmlFor="disabledTextInput">Last Name</Form.Label>
+                        <Form.Control id="last-name" value="Kehadzhiyski" />
+                    </Form.Group>
+                    <Form.Group className="mb-3">
+                        <Form.Label htmlFor="disabledTextInput">Email</Form.Label>
+                        <Form.Control id="email" placeholder="rado@abv.bg" disabled />
+                    </Form.Group>
+                    <Form.Group className="mb-3 text-area">
+                        <Form.Label htmlFor="disabledTextInput">Description</Form.Label>
+                        <Form.Control as="textarea" id="description" value="Some description" />
+                    </Form.Group>
+                </Form>
             </Modal.Body>
             <Modal.Footer>
                 <Button onClick={props.onHide}>Save</Button>

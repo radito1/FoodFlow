@@ -1,3 +1,10 @@
 .navigation-container {
-    margin-top: 50px;
+    position: absolute;
+    top: 50px;
+    left: 0;
+    right: 0;
+}
+
+.bg-body-tertiary{
+height: 70px;
 }
