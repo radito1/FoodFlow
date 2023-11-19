@@ -23,7 +23,6 @@ const UserProfile = ({ user }) => {
         };
 
         fetchData();
-        console.log(userData)
     }, [user]);
 
     return (
@@ -38,8 +37,8 @@ const UserProfile = ({ user }) => {
                 <h3 className="margin-top">Full Name:</h3>
                 <div className="names">
                     <div className="row-style">
-                        <p>Rado</p>
-                        <p>Nqkoi si</p>
+                        <p>{userData.firstName}</p>
+                        <p>{userData.lastName}</p>
                     </div>
                 </div>
 
@@ -48,7 +47,7 @@ const UserProfile = ({ user }) => {
                     <div className="address-info">
                         <h3>Address:</h3>
                         <div>
-                            <p className="contact-info">adressa mi </p>
+                            <p className="contact-info">{userData.address}</p>
                         </div>
                     </div>
 
@@ -62,7 +61,7 @@ const UserProfile = ({ user }) => {
 
                 <h3>Description:</h3>
                 <div className="row margin-top">
-                    <p>info za men</p>
+                    <p>{userData.description}</p>
                 </div>
                 <Button variant="primary" onClick={() => setModalShow(true)}>
                     Edit profile

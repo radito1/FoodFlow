@@ -8,7 +8,6 @@ const create = (data, uid) => {
     return set(userRef, data);
 };
 
-// TODO function overwrites the whole database
 const getUserData = async (uid) => {
     const userRef = ref(database, `/users/${uid}`);
 
@@ -27,11 +26,12 @@ const getUserData = async (uid) => {
     }
 };
 
+//TODO: test if it updates the database and not overwrite it ! 
 const updateUserData = async (newData, uid) => {
     const userRef = ref(database, `/users/${uid}`);
 
     try {
-        await set(userRef, newData);
+        await update(userRef, newData);
         console.log('User data updated successfully.');
     } catch (error) {
         console.error('Error updating user data:', error);
