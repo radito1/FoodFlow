@@ -21,9 +21,6 @@ const EditProfileModal = (props) => {
             description: description
         }
 
-        console.log(props.uid)
-        console.log('da')
-
         userService.updateUserData(data, props.uid)
             .then(() => {
                 props.onHide()

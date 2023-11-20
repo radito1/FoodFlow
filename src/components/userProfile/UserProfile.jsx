@@ -2,28 +2,50 @@ import { useEffect, useState } from "react";
 import "./userProfile.css"
 import Button from 'react-bootstrap/Button';
 import EditProfileModal from "../editUser/EditUserModal";
+import { getDatabase, ref, onValue } from 'firebase/database';
 import userService from "../../services/userService"
 
 const UserProfile = ({ user }) => {
     const [modalShow, setModalShow] = useState(false);
     const [userData, setUserData] = useState({});
+    const db = getDatabase();
 
     useEffect(() => {
-        const fetchData = async () => {
-            try {
-                if (user && user.uid) {
-                    const data = await userService.getUserData(user.uid);
-                    setUserData(data);
-                } else {
-                    console.log("User object or UID is undefined.");
-                }
-            } catch (e) {
-                console.error(e);
-            }
+        const userRef = ref(db, `/users/${user.uid}`);
+
+        const onDataChange = (snapshot) => {
+            const data = snapshot.val();
+            setUserData(data);
         };
 
-        fetchData();
-    }, [user]);
+        const onError = (error) => {
+            console.error('Error fetching user data:', error);
+        };
+
+        const unsubscribe = onValue(userRef, onDataChange, { errorCallback: onError });
+
+        return () => {
+            // Unsubscribe from the real-time listener on component unmount
+            unsubscribe();
+        };
+    }, [db, user]);
+
+    // useEffect(() => {
+    //     const fetchData = async () => {
+    //         try {
+    //             if (user && user.uid) {
+    //                 const data = await userService.getUserData(user.uid);
+    //                 setUserData(data);
+    //             } else {
+    //                 console.log("User object or UID is undefined.");
+    //             }
+    //         } catch (e) {
+    //             console.error(e);
+    //         }
+    //     };
+
+    //     fetchData();
+    // }, [user]);
 
     return (
         <>
