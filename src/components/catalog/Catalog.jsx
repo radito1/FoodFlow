@@ -50,7 +50,6 @@ const Catalog = (params) => {
                 </div>
             }
         </>
-
     );
 }
 
