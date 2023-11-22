@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
+
 import './login.css'
 
 import Form from 'react-bootstrap/Form';
@@ -41,7 +42,7 @@ const Login = () => {
                     <Form.Control type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Password" />
                 </Form.Group>
                 <Form.Text className="text-muted">
-                    Don't have an account yet? <span className='register-navigate' onClick={navigateRegister}>Register now</span>.
+                    Already a registered user? <span className='register-navigate' onClick={navigateRegister}>Register now</span>.
                 </Form.Text>
                 <div className='button-container'>
                     <Button variant="primary" type="submit">
