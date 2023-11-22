@@ -22,6 +22,10 @@ const Login = () => {
             });
     }
 
+    const navigateRegister =() => {
+        navigate('/register')
+    }
+
     return (
         <div className='form-container'>
             <h2>Login</h2>
@@ -34,11 +38,15 @@ const Login = () => {
                     <Form.Label>Password</Form.Label>
                     <Form.Control type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Password" />
                 </Form.Group>
+                <Form.Text className="text-muted">
+                    Don't have an account yet? <span className='register-navigate' onClick={navigateRegister}>Register now</span>.
+                </Form.Text>
                 <div className='button-container'>
                     <Button variant="primary" type="submit">
                         Login
                     </Button>
                 </div>
+
             </Form>
         </div>
 

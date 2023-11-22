@@ -9,4 +9,10 @@
 .button-container{
     display: flex;
     justify-content: center;
+    margin-top: 20px;
+}
+
+.register-navigate {
+    text-decoration: underline;
+    cursor: pointer;
 }
