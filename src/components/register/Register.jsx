@@ -53,6 +53,10 @@ const Register = () => {
             });
     }
 
+    const navigateLogin = () => {
+        navigate('/login');
+    }
+
     return (
         <div className='form-container'>
             <h2>Register</h2>
@@ -69,6 +73,9 @@ const Register = () => {
                     <Form.Label>Password</Form.Label>
                     <Form.Control type="password" value={password} onChange={passwordChangeHandler} placeholder="Password" />
                 </Form.Group>
+                <Form.Text className="text-muted">
+                    Already have an account? <span className='register-navigate' onClick={navigateLogin}>Login</span>.
+                </Form.Text>
                 <div className='button-container'>
                     <Button variant="primary" type="submit">
                         Register
