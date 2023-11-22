@@ -1,10 +1,12 @@
-import Form from 'react-bootstrap/Form';
-import Button from 'react-bootstrap/Button';
-import '../login/login.css'
 import { useState } from 'react';
 import { createUserWithEmailAndPassword, getAuth, updateProfile } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
+
+import '../login/login.css'
 import userService from '../../services/userService';
+
+import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
 
 const Register = () => {
     const [username, setUsername] = useState('');
