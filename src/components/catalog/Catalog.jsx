@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import dataService from '../../services/dataService';
 import RecipeCard from '../recipeCard/RecipeCard';
-import './catalog.css';
+import styles from  './catalog.module.css';
 
 //TODO : looks like it is working now but test is again if it renders corect data!!!
 
@@ -45,7 +45,7 @@ const Catalog = (params) => {
                 ?
                 <p>No recipes!</p>
                 :
-                <div className='catalog-container'>
+                <div className={styles['catalog-container']}>
                     {recipes.map(recipe => <RecipeCard key={recipe.id} {...recipe} />)}
                 </div>
             }

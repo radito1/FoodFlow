@@ -1,16 +1,19 @@
+import { useEffect, useState } from "react"
 import { Route, Routes } from "react-router-dom"
+import { onAuthStateChanged } from "firebase/auth"
+import { auth } from "./firebase"
+
+import style from './main.module.css';
+
 import Login from "./components/login/Login"
 import Navigation from "./components/navigation/Navigation"
 import Home from "./components/home/Home"
 import Register from "./components/register/Register"
 import Create from "./components/create/Create"
 import Catalog from "./components/catalog/Catalog"
-import { useEffect, useState } from "react"
-import { onAuthStateChanged } from "firebase/auth"
-import { auth } from "./firebase"
 import UserProfile from "./components/userProfile/UserProfile"
+import RecipeDetails from "./components/recipeDetails/RecipeDetails"
 
-import style from './main.module.css';
 
 
 const App = () => {
@@ -43,6 +46,7 @@ const App = () => {
                     <Route path="/my-recipes" element={<Catalog uid={authenticatedUser?.uid} />} />
                     <Route path="/catalog/see-all" element={<Catalog all />} />
                     <Route path="/catalog/soups" element={<Catalog category={'Soups'} />} />
+                    <Route path="/recipe/:id" element={<RecipeDetails/>} />
                     <Route path="/my-profile" element={<UserProfile user={authenticatedUser} />} />
                 </Routes>
             </div>
