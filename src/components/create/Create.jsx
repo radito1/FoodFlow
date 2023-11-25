@@ -95,8 +95,14 @@ function Create() {
                         <option>Chicken</option>
                     </Form.Select>
                 </Form.Group>
-                <Form.Label htmlFor='pictures'>Select pictures</Form.Label>
-                <input type="file" id="pictures" name="pictures" multiple onChange={handlePictureChange}></input>
+                <Form.Group controlId="exampleForm.ControlInputPicture">
+                    <Form.Label>Recipe image</Form.Label>
+                    <Form.Control type="text"
+                        value={recipe.recipePicture}
+                        onChange={handlePictureChange}
+                        name="recipePicture"
+                    />
+                </Form.Group>
                 <Form.Group className="mb-3">
                     <Form.Label>Select preparation time</Form.Label>
                     <Form.Select aria-label="Default select example" onChange={handleTimeChange} value={recipe.time}>
