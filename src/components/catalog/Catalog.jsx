@@ -1,7 +1,9 @@
-import { useEffect, useState } from 'react';
-import dataService from '../../services/dataService';
-import RecipeCard from '../recipeCard/RecipeCard';
+import { useEffect, useState } from 'react';0
+
 import styles from  './catalog.module.css';
+import dataService from '../../services/dataService';
+
+import RecipeCard from '../recipeCard/RecipeCard';
 
 //TODO : looks like it is working now but test is again if it renders corect data!!!
 
