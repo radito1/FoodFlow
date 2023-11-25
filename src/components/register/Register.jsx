@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { createUserWithEmailAndPassword, getAuth, updateProfile } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
 
-import '../login/login.css'
+import styles from '../login/login.module.css';
 import userService from '../../services/userService';
 
 import Form from 'react-bootstrap/Form';
@@ -62,9 +62,9 @@ const Register = () => {
     }
 
     return (
-        <div className='form-container'>
+        <div className={styles['form-container']}>
             <h2>Register</h2>
-            <Form onSubmit={register}>
+            <Form className={styles.form} onSubmit={register}>
                 <Form.Group className="mb-3" controlId="formGroupUsername">
                     <Form.Label>Username</Form.Label>
                     <Form.Control type="username" value={username} onChange={usernameChangeHandler} placeholder="Enter username" />
@@ -78,9 +78,9 @@ const Register = () => {
                     <Form.Control type="password" value={password} onChange={passwordChangeHandler} placeholder="Password" />
                 </Form.Group>
                 <Form.Text className="text-muted">
-                    Already have an account? <span className='register-navigate' onClick={navigateLogin}>Login</span>.
+                    Already have an account? <span className={styles.navigate} onClick={navigateLogin}>Login</span>.
                 </Form.Text>
-                <div className='button-container'>
+                <div className={styles['button-container']}>
                     <Button variant="primary" type="submit">
                         Register
                     </Button>

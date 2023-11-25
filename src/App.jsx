@@ -10,6 +10,8 @@ import { onAuthStateChanged } from "firebase/auth"
 import { auth } from "./firebase"
 import UserProfile from "./components/userProfile/UserProfile"
 
+import style from './main.module.css';
+
 
 const App = () => {
     const [authenticatedUser, setAuthenticatedUser] = useState('');
@@ -32,16 +34,18 @@ const App = () => {
     return (
         <>
             <Navigation />
-            <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/login" element={<Login />} />
-                <Route path="/register" element={<Register />} />
-                <Route path="/create" element={<Create />} />
-                <Route path="/my-recipes" element={<Catalog uid={authenticatedUser?.uid} />} />
-                <Route path="/catalog/see-all" element={<Catalog all/>} />
-                <Route path="/catalog/soups" element={<Catalog category={'Soups'} />} />
-                <Route path="/my-profile" element={<UserProfile user={authenticatedUser}/>} />
-            </Routes>
+            <div className={style['main-container']}>
+                <Routes>
+                    <Route path="/" element={<Home />} />
+                    <Route path="/login" element={<Login />} />
+                    <Route path="/register" element={<Register />} />
+                    <Route path="/create" element={<Create />} />
+                    <Route path="/my-recipes" element={<Catalog uid={authenticatedUser?.uid} />} />
+                    <Route path="/catalog/see-all" element={<Catalog all />} />
+                    <Route path="/catalog/soups" element={<Catalog category={'Soups'} />} />
+                    <Route path="/my-profile" element={<UserProfile user={authenticatedUser} />} />
+                </Routes>
+            </div>
         </>
     )
 }

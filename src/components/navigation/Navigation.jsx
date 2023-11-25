@@ -11,6 +11,7 @@ const Navigation = () => {
         <div className="navigation-container">
             <Navbar collapseOnSelect expand="lg" className="bg-body-tertiary">
                 <Container>
+                    <img className="logo" src="/food-logo.png" alt="logo" />
                     <Navbar.Brand as={Link} to="/">FoodFlow</Navbar.Brand>
                     <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                     <Navbar.Collapse id="responsive-navbar-nav">

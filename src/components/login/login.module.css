@@ -3,7 +3,13 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    width: 250px;
+    padding-top: 100px;
     gap: 20px;
+}
+
+.form {
+    width: 100%;
 }
 
 .button-container{
@@ -12,7 +18,7 @@
     margin-top: 20px;
 }
 
-.register-navigate {
+.navigate {
     text-decoration: underline;
     cursor: pointer;
 }

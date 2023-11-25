@@ -1,11 +1,13 @@
-import Form from 'react-bootstrap/Form';
-import dataService from '../../services/dataService';
-import { Button } from 'react-bootstrap';
 import { useEffect, useState } from 'react';
-import { onAuthStateChanged } from 'firebase/auth';
-import { auth } from '../../firebase';
 import { useNavigate } from 'react-router-dom';
-import './create.css'
+
+import styles from './create.module.css';
+import dataService from '../../services/dataService';
+import { auth } from '../../firebase';
+
+import Form from 'react-bootstrap/Form';
+import { Button } from 'react-bootstrap';
+import { onAuthStateChanged } from 'firebase/auth';
 
 function Create() {
     const initialState = {
@@ -66,8 +68,8 @@ function Create() {
     };
 
     return (
-        <div className='form-container'>
-            <Form className='form'>
+        <div className={styles['form-container']}>
+            <Form className={styles.form}>
                 <Form.Group controlId="exampleForm.ControlInput1">
                     <Form.Label>Recipe</Form.Label>
                     <Form.Control type="text"
