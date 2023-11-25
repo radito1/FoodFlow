@@ -49,11 +49,18 @@ function Create() {
         setRecipe({ ...recipe, time: value });
     };
 
+    const handlePictureChange = (e) => {
+        const { value } = e.target;
+        console.log(value)
+        setRecipe({ ...recipe, pictures: value });
+    };
+
     const saveRecipe = () => {
         let data = {
             recipeName: recipe.recipeName,
             recipeText: recipe.recipeText,
             category: recipe.category,
+            pictures: recipe.pictures,
             time: recipe.time,
             owner: authenticatedUser.uid,
         };
@@ -69,16 +76,18 @@ function Create() {
 
     return (
         <div className={styles['form-container']}>
+            <h2>Add Recipe</h2>
             <Form className={styles.form}>
                 <Form.Group controlId="exampleForm.ControlInput1">
-                    <Form.Label>Recipe</Form.Label>
+                    <Form.Label>Recipe name</Form.Label>
                     <Form.Control type="text"
                         value={recipe.recipeName}
                         onChange={handleInputChange}
                         name="recipeName"
-                        placeholder="musaka" />
+                    />
                 </Form.Group>
                 <Form.Group className="mb-3">
+                    <Form.Label>Select category</Form.Label>
                     <Form.Select aria-label="Default select example" onChange={handleCategoryChange} value={recipe.category}>
                         <option>Select Category</option>
                         <option>Burgers/Sandwitches</option>
@@ -86,9 +95,11 @@ function Create() {
                         <option>Chicken</option>
                     </Form.Select>
                 </Form.Group>
+                <Form.Label htmlFor='pictures'>Select pictures</Form.Label>
+                <input type="file" id="pictures" name="pictures" multiple onChange={handlePictureChange}></input>
                 <Form.Group className="mb-3">
+                    <Form.Label>Select preparation time</Form.Label>
                     <Form.Select aria-label="Default select example" onChange={handleTimeChange} value={recipe.time}>
-                        <option>Select preparation time</option>
                         <option>less then 15min</option>
                         <option>15min</option>
                         <option>30min</option>

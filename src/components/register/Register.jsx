@@ -8,8 +8,6 @@ import userService from '../../services/userService';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 
-//TODO: input fields are shorter compared to login
-
 const Register = () => {
     const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
