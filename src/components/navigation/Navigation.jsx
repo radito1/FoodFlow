@@ -4,20 +4,22 @@ import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import { Link } from "react-router-dom";
 import Authentication from "../authentication/Authentication";
-import "./navigation.css";
+import styles from "./navigation.module.css";
 
 const Navigation = () => {
     return (
-        <div className="navigation-container">
+        <div className={styles['navigation-container']}>
             <Navbar collapseOnSelect expand="lg" className="bg-body-tertiary">
                 <Container>
-                    <img className="logo" src="/food-logo.png" alt="logo" />
+                    <img className={styles.logo} src="/food-logo.png" alt="logo" />
                     <Navbar.Brand as={Link} to="/">FoodFlow</Navbar.Brand>
                     <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                     <Navbar.Collapse id="responsive-navbar-nav">
                         <Nav className="me-auto">
                             <Nav.Link href="#features">Features</Nav.Link>
                             <Nav.Link href="#pricing">How it works</Nav.Link>
+
+                            {/* TODO : navigation dropdown is bellow other elements */}
                             <NavDropdown title="Categories" id="collapsible-nav-dropdown">
                                 <NavDropdown.Item as={Link} to="/catalog/see-all">See all</NavDropdown.Item>
                                 <NavDropdown.Divider />

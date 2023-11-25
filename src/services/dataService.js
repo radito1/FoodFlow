@@ -18,6 +18,25 @@ const getAll = async () => {
   }
 };
 
+const getById = async (id) => {
+  const dataRef = ref(database, `/recipes/${id}`);
+
+  try {
+    const snapshot = await get(dataRef);
+
+    if (snapshot.exists()) {
+      return snapshot.val();
+    } else {
+      console.log('No data available for the specified id');
+      return null;
+    }
+  } catch (error) {
+    console.error('Error fetching data by id:', error);
+    throw error; // You might want to handle the error accordingly
+  }
+};
+
+
 const getByFilter = async (filterKey, filterValue) => {
   try {
     const filteredSnapshot = await get(
@@ -62,6 +81,7 @@ const removeAllRecipes = () => {
 
 export default {
   getAll,
+  getById,
   create,
   updateRecipe,
   removeRecipe,
