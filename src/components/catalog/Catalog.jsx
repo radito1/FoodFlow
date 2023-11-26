@@ -1,14 +1,16 @@
-import { useEffect, useState } from 'react';0
+import { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 
 import styles from  './catalog.module.css';
 import dataService from '../../services/dataService';
 
 import RecipeCard from '../recipeCard/RecipeCard';
 
-//TODO : looks like it is working now but test is again if it renders corect data!!!
+//TODO : looks like it is working now but test is again if it renders corect data!!! 
 
 const Catalog = (params) => {
     const [recipes, setRecipes] = useState([]);
+    const { category } = useParams();
 
     const fetchData = async (key, value) => {
         try {
@@ -25,8 +27,8 @@ const Catalog = (params) => {
     };
 
     useEffect(() => {
-        if (params.category) {
-            fetchData('category', params.category);
+        if (category) {
+            fetchData('category', category);
         } else if (params.uid) {
             fetchData('owner', params.uid);
         } else if (params.all) {
@@ -39,7 +41,7 @@ const Catalog = (params) => {
             setRecipes([]);
         }
 
-    }, [params]);
+    }, [params, category]);
 
     return (
         <>
