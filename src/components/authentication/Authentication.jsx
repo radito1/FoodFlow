@@ -32,13 +32,14 @@ const Authentication = () => {
 
     return (
         <>
-            {authenticatedUser === null ?
+            {authenticatedUser === null
+                ?
                 <>
                     <Nav.Link as={Link} to="/login">Login</Nav.Link>
                     <Nav.Link as={Link} to="/register">Register</Nav.Link>
                 </> :
                 <>
-                    <NavDropdown title={`${authenticatedUser.displayName}`} id="collapsible-nav-dropdown">
+                    <NavDropdown title={`${authenticatedUser.displayName}` || `${authenticatedUser.email}`} id="collapsible-nav-dropdown">
                         <NavDropdown.Item as={Link} to="/my-profile">My profile</NavDropdown.Item>
                         <NavDropdown.Item as={Link} to="/create">Create</NavDropdown.Item>
                         <NavDropdown.Item as={Link} to="/my-recipes">My recipes</NavDropdown.Item>

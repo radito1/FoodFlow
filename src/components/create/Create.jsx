@@ -13,8 +13,10 @@ function Create() {
     const initialState = {
         recipeName: '',
         recipeText: '',
+        recipePicture: '',
         category: '',
         time: '',
+        owner: '',
     };
     const [recipe, setRecipe] = useState(initialState);
     const [authenticatedUser, setAuthenticatedUser] = useState('');
@@ -39,28 +41,14 @@ function Create() {
         setRecipe({ ...recipe, [name]: value });
     };
 
-    const handleCategoryChange = (e) => {
-        const { value } = e.target;
-        setRecipe({ ...recipe, category: value });
-    };
-
-    const handleTimeChange = (e) => {
-        const { value } = e.target;
-        setRecipe({ ...recipe, time: value });
-    };
-
-    const handlePictureChange = (e) => {
-        const { value } = e.target;
-        console.log(value)
-        setRecipe({ ...recipe, pictures: value });
-    };
-
     const saveRecipe = () => {
+        let categoryFix = recipe.category.toLowerCase().replace(/\s+/g, '-').replace(/\//g, '-');
+
         let data = {
             recipeName: recipe.recipeName,
             recipeText: recipe.recipeText,
-            category: recipe.category,
-            pictures: recipe.pictures,
+            category: categoryFix,
+            recipePicture: recipe.recipePicture,
             time: recipe.time,
             owner: authenticatedUser.uid,
         };
@@ -88,24 +76,32 @@ function Create() {
                 </Form.Group>
                 <Form.Group className="mb-3">
                     <Form.Label>Select category</Form.Label>
-                    <Form.Select aria-label="Default select example" onChange={handleCategoryChange} value={recipe.category}>
+                    <Form.Select aria-label="Default select example" name="category" onChange={handleInputChange} value={recipe.category}>
                         <option>Select Category</option>
-                        <option>Burgers/Sandwitches</option>
+                        <option>Appetizers</option>
+                        <option>Main Courses</option>
                         <option>Soups</option>
-                        <option>Chicken</option>
+                        <option>Desserts</option>
+                        <option>Salads</option>
+                        <option>Beverages</option>
+                        <option>Baking</option>
+                        <option>Vegetarian/Vegan</option>
+                        <option>Grilling/BBQ</option>
+                        <option>International Cuisine</option>
+                        <option>Burgers/Sandwiches</option>
                     </Form.Select>
                 </Form.Group>
                 <Form.Group controlId="exampleForm.ControlInputPicture">
                     <Form.Label>Recipe image</Form.Label>
                     <Form.Control type="text"
                         value={recipe.recipePicture}
-                        onChange={handlePictureChange}
+                        onChange={handleInputChange}
                         name="recipePicture"
                     />
                 </Form.Group>
                 <Form.Group className="mb-3">
                     <Form.Label>Select preparation time</Form.Label>
-                    <Form.Select aria-label="Default select example" onChange={handleTimeChange} value={recipe.time}>
+                    <Form.Select aria-label="Default select example" name="time" onChange={handleInputChange} value={recipe.time}>
                         <option>less then 15min</option>
                         <option>15min</option>
                         <option>30min</option>

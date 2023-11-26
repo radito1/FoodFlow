@@ -44,7 +44,7 @@ const App = () => {
                     <Route path="/register" element={<Register />} />
                     <Route path="/create" element={<Create />} />
                     <Route path="/my-recipes" element={<Catalog uid={authenticatedUser?.uid} />} />
-                    <Route path="/catalog/all-posts" element={<Catalog all />} />
+                    <Route path="/catalog/all-recipes" element={<Catalog all />} />
                     <Route path="/catalog/:category" element={<Catalog />} />
                     <Route path="/recipe/:id" element={<RecipeDetails />} />
                     <Route path="/my-profile" element={<UserProfile user={authenticatedUser} />} />

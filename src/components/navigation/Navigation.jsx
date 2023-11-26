@@ -21,11 +21,19 @@ const Navigation = () => {
                             <Nav.Link href="#features">Features</Nav.Link>
                             <Nav.Link href="#pricing">How it works</Nav.Link>
                             <NavDropdown className={styles.dropdown} title="Categories" id="collapsible-nav-dropdown">
-                                <NavDropdown.Item as={Link} to="/catalog/all-posts">All posts</NavDropdown.Item>
+                                <NavDropdown.Item as={Link} to="/catalog/all-recipes">All recipes</NavDropdown.Item>
                                 <NavDropdown.Divider />
-                                <NavDropdown.Item href="#action/3.1">Burger</NavDropdown.Item>
-                                <NavDropdown.Item href="#action/3.2">Meat</NavDropdown.Item>
+                                <NavDropdown.Item as={Link} to="/catalog/appetizers">Appetizers</NavDropdown.Item>
+                                <NavDropdown.Item as={Link} to="/catalog/main-courses">Main Courses</NavDropdown.Item>
                                 <NavDropdown.Item as={Link} to="/catalog/soups">Soups</NavDropdown.Item>
+                                <NavDropdown.Item as={Link} to="/catalog/desserts">Desserts</NavDropdown.Item>
+                                <NavDropdown.Item as={Link} to="/catalog/salads">Salads</NavDropdown.Item>
+                                <NavDropdown.Item as={Link} to="/catalog/beverages">Beverages</NavDropdown.Item>
+                                <NavDropdown.Item as={Link} to="/catalog/baking">Baking</NavDropdown.Item>
+                                <NavDropdown.Item as={Link} to="/catalog/vegetarian-vegan">Vegetarian/Vegan</NavDropdown.Item>
+                                <NavDropdown.Item as={Link} to="/catalog/grilling-bbq">Grilling/BBQ</NavDropdown.Item>
+                                <NavDropdown.Item as={Link} to="/catalog/burgers-sandwitches">Burgers/Sandwiches</NavDropdown.Item>
+                                <NavDropdown.Item as={Link} to="/catalog/international-cuisine">International Cuisine</NavDropdown.Item>
                             </NavDropdown>
                         </Nav>
                         <Nav>
