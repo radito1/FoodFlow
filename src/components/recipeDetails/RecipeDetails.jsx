@@ -26,7 +26,7 @@ const RecipeDetails = () => {
 
         // TODO: this was making rendering problems. Test it again!
         <Card style={{ width: '18rem' }}>
-            <Card.Img variant="top"  src={data.pictures}/>
+            <Card.Img variant="top"  src={data.recipePicture}/>
             <Card.Body>
                 <Card.Title>{data.recipeName}</Card.Title>
                 <Card.Text>

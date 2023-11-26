@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
-import styles from  './catalog.module.css';
+import styles from './catalog.module.css';
 import dataService from '../../services/dataService';
 
 import RecipeCard from '../recipeCard/RecipeCard';
@@ -41,18 +41,19 @@ const Catalog = (params) => {
             setRecipes([]);
         }
 
-    }, [params, category]);
+    }, [category, category]);
 
     return (
         <>
-            {recipes.length === 0
-                ?
-                <p>No recipes!</p>
-                :
-                <div className={styles['catalog-container']}>
-                    {recipes.map(recipe => <RecipeCard key={recipe.id} {...recipe} />)}
-                </div>
-            }
+            <div className={styles['catalog-container']}>
+                {recipes.length === 0
+                    ?
+                    <p>No recipes in this category!</p>
+                    : <>
+                        {recipes.map(recipe => <RecipeCard key={recipe.id} {...recipe} />)}
+                    </>
+                }
+            </div>
         </>
     );
 }
