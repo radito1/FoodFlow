@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
 import dataService from '../../services/dataService';
+import styles from './recipeDetails.module.css'
 
 import Card from 'react-bootstrap/Card';
 import ListGroup from 'react-bootstrap/ListGroup';
@@ -23,26 +24,18 @@ const RecipeDetails = () => {
         fetchData();
     }, [id])
     return (
-
-        // TODO: this was making rendering problems. Test it again!
-        <Card style={{ width: '18rem' }}>
-            <Card.Img variant="top"  src={data.recipePicture}/>
-            <Card.Body>
-                <Card.Title>{data.recipeName}</Card.Title>
-                <Card.Text>
-                    {data.recipeText}
-                </Card.Text>
-            </Card.Body>
-            <ListGroup className="list-group-flush">
-                <ListGroup.Item>{data.recipeName}</ListGroup.Item>
-                <ListGroup.Item>{data.time}</ListGroup.Item>
-                
-            </ListGroup>
-            <Card.Body>
-                <Card.Link href="#">Card Link</Card.Link>
-                <Card.Link href="#">Another Link</Card.Link>
-            </Card.Body>
-        </Card>
+        <div className={styles['recipeDetails-container']}>
+            <Card style={{ width: '18rem' }}>
+                <Card.Img variant="top" src={data.recipePicture} />
+                <Card.Body>
+                    <Card.Title>{data.recipeName}</Card.Title>
+                    <Card.Text>Preparation time: {data.time}</Card.Text>
+                </Card.Body>
+                <ListGroup className="list-group-flush">
+                    <ListGroup.Item>{data.recipeText}</ListGroup.Item>
+                </ListGroup>
+            </Card>
+        </div>
     );
 }
 
