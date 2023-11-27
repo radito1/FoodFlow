@@ -11,7 +11,7 @@ const RecipeCard = ({ recipeName, time, recipePicture,ownerName, id }) => {
     }
     
     return (
-        <Card style={{ width: '18rem' }} onClick={navigation}>
+        <Card className={styles['card-container']} onClick={navigation}>
             {recipePicture && <Card.Img className={styles['card-image']} variant="top" src={recipePicture} />}
             <Card.Body>
                 <Card.Title>{recipeName}</Card.Title>

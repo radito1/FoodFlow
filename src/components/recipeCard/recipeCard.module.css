@@ -1,7 +1,6 @@
 .card-container {
-    width: '18rem';
+    width: 18rem;
     cursor: pointer;
-    /* z-index: -1; */
 }
 
 .card-image {
