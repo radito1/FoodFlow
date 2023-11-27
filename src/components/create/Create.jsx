@@ -53,6 +53,7 @@ function Create() {
             time: recipe.time,
             ownerId: authenticatedUser.uid,
             ownerName: authenticatedUser.displayName,
+            timestamp: new Date().toISOString(),
         };       
 
         dataService.create(data)
