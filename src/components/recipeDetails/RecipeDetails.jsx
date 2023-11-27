@@ -25,7 +25,7 @@ const RecipeDetails = () => {
     }, [id])
     return (
         <div className={styles['recipeDetails-container']}>
-            <Card style={{ width: '18rem' }}>
+            <Card style={{ width: '25rem' }}>
                 <Card.Img variant="top" src={data.recipePicture} />
                 <Card.Body>
                     <Card.Title>{data.recipeName}</Card.Title>
