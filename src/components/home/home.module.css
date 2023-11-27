@@ -1,0 +1,32 @@
+.home-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 100px;
+}
+
+.info {
+    margin-top: 20px;
+    text-align: center;
+    width: 800px;
+}
+
+.latest-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 30px;
+}
+
+.latest-section{
+    display: flex;
+    margin-top: 30px;
+}
+
+.latest-info {
+    text-align: center;
+    width: 500px;
+    margin-left: 50px;
+    list-style-type: none; 
+}

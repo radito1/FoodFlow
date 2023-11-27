@@ -17,7 +17,6 @@ function Create() {
         category: '',
         time: '',
         ownerId: '',
-        ownerName: '',
     };
     const [recipe, setRecipe] = useState(initialState);
     const [authenticatedUser, setAuthenticatedUser] = useState('');

@@ -6,8 +6,6 @@ import dataService from '../../services/dataService';
 
 import RecipeCard from '../recipeCard/RecipeCard';
 
-//TODO : looks like it is working now but test is again if it renders corect data!!! 
-
 const Catalog = (params) => {
     const [recipes, setRecipes] = useState([]);
     const { category } = useParams();
@@ -30,7 +28,7 @@ const Catalog = (params) => {
         if (category) {
             fetchData('category', category);
         } else if (params.uid) {
-            fetchData('owner', params.uid);
+            fetchData('ownerId', params.uid);
         } else if (params.all) {
             dataService.getAll()
                 .then(data => {
@@ -41,7 +39,7 @@ const Catalog = (params) => {
             setRecipes([]);
         }
 
-    }, [category, category]);
+    }, [category, params]);
 
     return (
         <>

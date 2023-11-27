@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import "./userProfile.css"
+import styles from  "./userProfile.module.css"
 import Button from 'react-bootstrap/Button';
 import EditProfileModal from "../editUser/EditUserModal";
 import { getDatabase, ref, onValue } from 'firebase/database';
@@ -48,54 +48,49 @@ const UserProfile = ({ user }) => {
     // }, [user]);
 
     return (
-        <>
-            <div className="form-container">
-                <h1>Welcome</h1>
-                <div className="profile-image">
-                    <img className="image" />
-                </div>
-                <p>{user.displayName}</p>
+        <div className={styles['form-container']}>
+            <h1>Welcome</h1>            
+            <p className={styles.username}>{user.displayName}</p>
 
-                <h3 className="margin-top">Full Name:</h3>
-                <div className="names">
-                    <div className="row-style">
-                        <p>{userData.firstName}</p>
-                        <p>{userData.lastName}</p>
+            <h3 className={styles["margin-top"]}>Full Name:</h3>
+            <div className={styles["names"]}>
+                <div className={styles["row-style"]}>
+                    <p>{userData.firstName}</p>
+                    <p>{userData.lastName}</p>
+                </div>
+            </div>
+
+            <div className={styles["address-contact"]}>
+
+                <div className={styles["address-info"]}>
+                    <h3>Address:</h3>
+                    <div>
+                        <p className={styles["contact-info"]}>{userData.address}</p>
                     </div>
                 </div>
 
-                <div className="address-contact">
-
-                    <div className="address-info">
-                        <h3>Address:</h3>
-                        <div>
-                            <p className="contact-info">{userData.address}</p>
-                        </div>
-                    </div>
-
-                    <div className="address-info">
-                        <h3>Contact Info:</h3>
-                        <div>
-                            <p className="contact-info">{user.email}</p>
-                        </div>
+                <div className={styles["address-info"]}>
+                    <h3>Contact Info:</h3>
+                    <div>
+                        <p className={styles["contact-info"]}>{user.email}</p>
                     </div>
                 </div>
+            </div>
 
-                <h3>Description:</h3>
-                <div className="row margin-top">
-                    <p>{userData.description}</p>
-                </div>
-                <Button variant="primary" onClick={() => setModalShow(true)}>
-                    Edit profile
-                </Button>
+            <h3>Description:</h3>
+            <div className={styles["row margin-top"]}>
+                <p>{userData.description}</p>
+            </div>
+            <Button variant="primary" onClick={() => setModalShow(true)}>
+                Edit profile
+            </Button>
 
-                <EditProfileModal
-                    show={modalShow}
-                    onHide={() => setModalShow(false)}
-                    uid = {user.uid}
-                />
-            </div >
-        </>
+            <EditProfileModal
+                show={modalShow}
+                onHide={() => setModalShow(false)}
+                uid={user.uid}
+            />
+        </div >
     );
 }
 
