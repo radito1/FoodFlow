@@ -29,7 +29,7 @@ function Carousels() {
     return (
         <Carousel className={styles['carousel-container']} activeIndex={index} onSelect={handleSelect} slide={false}>
             {latestPosts.map(recipe =>
-                <Carousel.Item>
+                <Carousel.Item key={recipe.id}>
                     <img className={styles['carousel-image']} src={recipe.recipePicture} alt={recipe.recipeName} />
                     <Carousel.Caption>
                         <h3>{recipe.recipeName}</h3>
