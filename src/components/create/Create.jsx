@@ -16,7 +16,8 @@ function Create() {
         recipePicture: '',
         category: '',
         time: '',
-        owner: '',
+        ownerId: '',
+        ownerName: '',
     };
     const [recipe, setRecipe] = useState(initialState);
     const [authenticatedUser, setAuthenticatedUser] = useState('');
@@ -50,8 +51,9 @@ function Create() {
             category: categoryFix,
             recipePicture: recipe.recipePicture,
             time: recipe.time,
-            owner: authenticatedUser.uid,
-        };
+            ownerId: authenticatedUser.uid,
+            ownerName: authenticatedUser.displayName,
+        };       
 
         dataService.create(data)
             .then(() => {

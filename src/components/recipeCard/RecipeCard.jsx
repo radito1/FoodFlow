@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 
 import styles from './recipeCard.module.css'
 
-const RecipeCard = ({ recipeName, time, recipePicture, id }) => {
+const RecipeCard = ({ recipeName, time, recipePicture,ownerName, id }) => {
     const navigate = useNavigate('');
 
     const navigation = () => {
@@ -17,6 +17,9 @@ const RecipeCard = ({ recipeName, time, recipePicture, id }) => {
                 <Card.Title>{recipeName}</Card.Title>
                 <Card.Text>
                     Preparation time: {time}
+                </Card.Text>
+                <Card.Text>
+                    Posted by: {ownerName}
                 </Card.Text>
             </Card.Body>
         </Card>
