@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import { Route, Routes } from "react-router-dom"
 import { onAuthStateChanged } from "firebase/auth"
 import { auth } from "./firebase"
+import { AuthProvider } from "./contexts/authContext";
 
 import style from './main.module.css';
 
@@ -37,19 +38,21 @@ const App = () => {
     return (
         <>
             <Navigation />
-            <div className={style['main-container']}>
-                <Routes>
-                    <Route path="/" element={<Home />} />
-                    <Route path="/login" element={<Login />} />
-                    <Route path="/register" element={<Register />} />
-                    <Route path="/create" element={<Create />} />
-                    <Route path="/my-recipes" element={<Catalog uid={authenticatedUser?.uid} />} />
-                    <Route path="/catalog/all-recipes" element={<Catalog all />} />
-                    <Route path="/catalog/:category" element={<Catalog />} />
-                    <Route path="/recipe/:id" element={<RecipeDetails />} />
-                    <Route path="/my-profile" element={<UserProfile user={authenticatedUser} />} />
-                </Routes>
-            </div>
+            <AuthProvider>
+                <div className={style['main-container']}>
+                    <Routes>
+                        <Route path="/" element={<Home />} />
+                        <Route path="/login" element={<Login />} />
+                        <Route path="/register" element={<Register />} />
+                        <Route path="/create" element={<Create />} />
+                        <Route path="/my-recipes" element={<Catalog uid={authenticatedUser?.uid} />} />
+                        <Route path="/catalog/all-recipes" element={<Catalog all />} />
+                        <Route path="/catalog/:category" element={<Catalog />} />
+                        <Route path="/recipe/:id" element={<RecipeDetails />} />
+                        <Route path="/my-profile" element={<UserProfile user={authenticatedUser} />} />
+                    </Routes>
+                </div>
+            </AuthProvider>
         </>
     )
 }
