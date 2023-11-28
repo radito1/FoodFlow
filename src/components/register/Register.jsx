@@ -9,6 +9,11 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 
 const Register = () => {
+    // const initialState = {
+    //     email: '',
+    //     username: '',
+    //     uid: '',
+    // };
     const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -25,6 +30,10 @@ const Register = () => {
     const passwordChangeHandler = (e) => {
         setPassword(e.target.value);
     };
+
+    // const handleInputChange = (e) => {
+    //     setRecipe({ ...recipe, [e.target.name]: e.target.value });
+    // };
 
     const saveUser = (uid) => {
         let data = {

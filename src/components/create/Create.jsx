@@ -25,9 +25,9 @@ function Create() {
     useEffect(() => {
         const listenAuth = onAuthStateChanged(auth, (user) => {
             if (user) {
-                setAuthenticatedUser(user)
+                setAuthenticatedUser(user);
             } else {
-                navigate('/');
+                navigate('/login');
             }
         })
 
@@ -37,8 +37,7 @@ function Create() {
     }, [])
 
     const handleInputChange = (e) => {
-        const { name, value } = e.target;
-        setRecipe({ ...recipe, [name]: value });
+        setRecipe({ ...recipe, [e.target.name]: e.target.value });
     };
 
     const saveRecipe = () => {
@@ -53,8 +52,8 @@ function Create() {
             ownerId: authenticatedUser.uid,
             ownerName: authenticatedUser.displayName,
             timestamp: new Date().toISOString(),
-        };       
-
+        };
+        
         dataService.create(data)
             .then(() => {
                 navigate('/')
