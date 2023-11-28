@@ -1,7 +1,8 @@
 import { createContext, useState } from "react";
 import { useNavigate } from 'react-router-dom';
 
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword, getAuth, signInWithEmailAndPassword, updateProfile } from "firebase/auth";
+import userService from "../services/userService";
 
 const AuthContext = createContext();
 
@@ -15,21 +16,43 @@ export const AuthProvider = ({
         const auth = getAuth();
 
         return signInWithEmailAndPassword(auth, values.email, values.password)
-        .then(data => {
-            setAuth(data.user)
-            navigate('/')})
+            .then(data => {
+                setAuth(data.user)
+                navigate('/')
+            })
             .catch((error) => {
                 console.log(error);
             });
     };
 
     const registerSubmitHandler = async (values) => {
-        // const result = await authService.register(values.email, values.password);
+        const auth = getAuth();
 
-        setAuth(result);
+        const saveUser = (uid) => {
+            let data = {
+                email: values.email,
+                username: values.username,
+                uid: uid,
+            }
+            userService.create(data, uid)
+                .then(() => {
+                })
+                .catch(e => {
+                    console.log(e);
+                });
+        }
 
 
-        navigate(Path.Home);
+        createUserWithEmailAndPassword(auth, values.email, values.password)
+            .then((userCredential) => {
+                updateProfile(userCredential.user, { displayName: values.username })
+                saveUser(userCredential.user.uid);
+                setAuth(userCredential.user)
+                navigate('/');
+            })
+            .catch((error) => {
+                console.log(error);
+            });
     };
 
     const logoutHandler = () => {

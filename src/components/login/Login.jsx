@@ -1,6 +1,5 @@
 import { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 
 import styles from './login.module.css';
 
@@ -21,20 +20,6 @@ const Login = () => {
         [LoginFormKyes.Email]: '',
         [LoginFormKyes.Password]: '',
     });
-
-    // const [email, setEmail] = useState('');
-    // const [password, setPassword] = useState('');
-
-    // const signIn = (e) => {
-    //     e.preventDefault();
-
-    //     const auth = getAuth();
-    //     return signInWithEmailAndPassword(auth, email, password)
-    //         .then(navigate('/'))
-    //         .catch((error) => {
-    //             console.log(error);
-    //         });
-    // }
 
     const navigateRegister = () => {
         navigate('/register')
@@ -74,7 +59,6 @@ const Login = () => {
                 </div>
             </Form>
         </div>
-
     );
 }
 
