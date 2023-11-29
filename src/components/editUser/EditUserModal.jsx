@@ -1,10 +1,14 @@
-import Button from 'react-bootstrap/Button';
-import Form from 'react-bootstrap/Form';
-import Modal from 'react-bootstrap/Modal';
-import "./editUserModal.css"
 import { useState } from 'react';
+
+import "./editUserModal.css"
 import userService from '../../services/userService';
 
+import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
+import Modal from 'react-bootstrap/Modal';
+
+
+//TODO fix the useState
 const EditProfileModal = (props) => {
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');

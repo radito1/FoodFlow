@@ -7,12 +7,11 @@ import AuthContext from '../../contexts/authContext';
 import Button from 'react-bootstrap/Button';
 import EditProfileModal from "../editUser/EditUserModal";
 
-const UserProfile = ({ user }) => {
+const UserProfile = () => {
     const [modalShow, setModalShow] = useState(false);
     const [userData, setUserData] = useState({});
     const { userId, username, email } = useContext(AuthContext);
     const db = getDatabase();
-
 
     // TODO // move the function to the userService
     useEffect(() => {
