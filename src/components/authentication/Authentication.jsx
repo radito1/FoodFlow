@@ -1,26 +1,19 @@
-import React, { useEffect, useState } from "react";
-import Nav from "react-bootstrap/Nav";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
-import { onAuthStateChanged, signOut } from "firebase/auth";
+import { signOut } from "firebase/auth";
 import { auth } from "../../firebase";
 import { NavDropdown } from "react-bootstrap";
 
+import Nav from "react-bootstrap/Nav";
+import AuthContext from '../../contexts/authContext';
+
+
 const Authentication = () => {
-    const [authenticatedUser, setAuthenticatedUser] = useState('');
-
-    useEffect(() => {
-        const listenAuth = onAuthStateChanged(auth, (user) => {
-            if (user) {
-                setAuthenticatedUser(user)
-            } else {
-                setAuthenticatedUser(null)
-            }
-        })
-
-        return () => {
-            listenAuth();
-        }
-    }, []);
+    const {
+        isAuthenticated,
+        username,
+        email,
+    } = useContext(AuthContext);
 
     const userLogOut = () => {
         signOut(auth)
@@ -29,17 +22,16 @@ const Authentication = () => {
             .catch(error => console.log(error));
     }
 
-
     return (
         <>
-            {authenticatedUser === null
+            {isAuthenticated === false
                 ?
                 <>
                     <Nav.Link as={Link} to="/login">Login</Nav.Link>
                     <Nav.Link as={Link} to="/register">Register</Nav.Link>
                 </> :
                 <>
-                    <NavDropdown title={`${authenticatedUser.displayName}` || `${authenticatedUser.email}`} id="collapsible-nav-dropdown">
+                    <NavDropdown title={`${username}` || `${email}`} id="collapsible-nav-dropdown">
                         <NavDropdown.Item as={Link} to="/my-profile">My profile</NavDropdown.Item>
                         <NavDropdown.Item as={Link} to="/create">Create</NavDropdown.Item>
                         <NavDropdown.Item as={Link} to="/my-recipes">My recipes</NavDropdown.Item>

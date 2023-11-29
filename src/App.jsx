@@ -37,8 +37,8 @@ const App = () => {
 
     return (
         <>
-            <Navigation />
             <AuthProvider>
+                <Navigation />
                 <div className={style['main-container']}>
                     <Routes>
                         <Route path="/" element={<Home />} />

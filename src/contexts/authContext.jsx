@@ -1,7 +1,8 @@
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import { useNavigate } from 'react-router-dom';
+import { auth } from "../firebase";
+import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, updateProfile } from "firebase/auth";
 
-import { createUserWithEmailAndPassword, getAuth, signInWithEmailAndPassword, updateProfile } from "firebase/auth";
 import userService from "../services/userService";
 
 const AuthContext = createContext();
@@ -10,14 +11,28 @@ export const AuthProvider = ({
     children,
 }) => {
     const navigate = useNavigate();
-    const [auth, setAuth] = useState({});
+    const [authenticatedUser, setAuthenticatedUser] = useState({}); 
+
+    useEffect(() => {
+        const listenAuth = onAuthStateChanged(auth, (user) => {
+            if (user) {
+                setAuthenticatedUser(user)
+            } else {
+                setAuthenticatedUser({})
+            }
+        })
+
+        return () => {
+            listenAuth();
+        }
+    }, []);
 
     const loginSubmitHandler = async (values) => {
         const auth = getAuth();
 
         return signInWithEmailAndPassword(auth, values.email, values.password)
             .then(data => {
-                setAuth(data.user)
+                setAuthenticatedUser(data.user)
                 navigate('/')
             })
             .catch((error) => {
@@ -42,12 +57,11 @@ export const AuthProvider = ({
                 });
         }
 
-
         createUserWithEmailAndPassword(auth, values.email, values.password)
             .then((userCredential) => {
                 updateProfile(userCredential.user, { displayName: values.username })
                 saveUser(userCredential.user.uid);
-                setAuth(userCredential.user)
+                setAuthenticatedUser(userCredential.user);
                 navigate('/');
             })
             .catch((error) => {
@@ -55,19 +69,19 @@ export const AuthProvider = ({
             });
     };
 
-    const logoutHandler = () => {
-        setAuth({});
-        localStorage.removeItem('accessToken');
-    };
+    // const logoutHandler = () => {
+    //     setAuthenticatedUser({});
+    //     localStorage.removeItem('accessToken');
+    // };
 
     const values = {
         loginSubmitHandler,
         registerSubmitHandler,
-        logoutHandler,
-        username: auth.displayName || auth.email,
-        email: auth.email,
-        userId: auth.uid,
-        isAuthenticated: !!auth.accessToken,
+        // logoutHandler,
+        username: authenticatedUser.displayName || authenticatedUser.email,
+        email: authenticatedUser.email,
+        userId: authenticatedUser.uid,
+        isAuthenticated: !!authenticatedUser.accessToken,
     };
 
     return (
