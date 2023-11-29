@@ -1,14 +1,16 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
 import styles from './catalog.module.css';
 import dataService from '../../services/dataService';
+import AuthContext from '../../contexts/authContext';
 
 import RecipeCard from '../recipeCard/RecipeCard';
 
 const Catalog = (params) => {
     const [recipes, setRecipes] = useState([]);
     const { category } = useParams();
+    const { userId } = useContext(AuthContext);
 
     const fetchData = async (key, value) => {
         try {
@@ -27,8 +29,8 @@ const Catalog = (params) => {
     useEffect(() => {
         if (category) {
             fetchData('category', category);
-        } else if (params.uid) {
-            fetchData('ownerId', params.uid);
+        } else if (params.userRecipes) {
+            fetchData('ownerId', userId);
         } else if (params.all) {
             dataService.getAll()
                 .then(data => {

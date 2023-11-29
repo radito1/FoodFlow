@@ -1,7 +1,4 @@
-import { useEffect, useState } from "react"
 import { Route, Routes } from "react-router-dom"
-import { onAuthStateChanged } from "firebase/auth"
-import { auth } from "./firebase"
 import { AuthProvider } from "./contexts/authContext";
 
 import style from './main.module.css';
@@ -15,26 +12,7 @@ import Catalog from "./components/catalog/Catalog"
 import UserProfile from "./components/userProfile/UserProfile"
 import RecipeDetails from "./components/recipeDetails/RecipeDetails"
 
-
-
-const App = () => {
-    const [authenticatedUser, setAuthenticatedUser] = useState('');
-
-    useEffect(() => {
-        const listenAuth = onAuthStateChanged(auth, (user) => {
-            if (user) {
-                setAuthenticatedUser(user)
-                console.log(authenticatedUser)
-            } else {
-                setAuthenticatedUser(null)
-            }
-        })
-
-        return () => {
-            listenAuth();
-        }
-    }, []);
-
+const App = () => {    
     return (
         <>
             <AuthProvider>
@@ -45,11 +23,11 @@ const App = () => {
                         <Route path="/login" element={<Login />} />
                         <Route path="/register" element={<Register />} />
                         <Route path="/create" element={<Create />} />
-                        <Route path="/my-recipes" element={<Catalog uid={authenticatedUser?.uid} />} />
+                        <Route path="/my-recipes" element={<Catalog userRecipes />} />
                         <Route path="/catalog/all-recipes" element={<Catalog all />} />
                         <Route path="/catalog/:category" element={<Catalog />} />
                         <Route path="/recipe/:id" element={<RecipeDetails />} />
-                        <Route path="/my-profile" element={<UserProfile user={authenticatedUser} />} />
+                        <Route path="/my-profile" element={<UserProfile />} />
                     </Routes>
                 </div>
             </AuthProvider>

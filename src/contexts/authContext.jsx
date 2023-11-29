@@ -11,7 +11,7 @@ export const AuthProvider = ({
     children,
 }) => {
     const navigate = useNavigate();
-    const [authenticatedUser, setAuthenticatedUser] = useState({}); 
+    const [authenticatedUser, setAuthenticatedUser] = useState({});
 
     useEffect(() => {
         const listenAuth = onAuthStateChanged(auth, (user) => {
