@@ -9,7 +9,7 @@ import Form from 'react-bootstrap/Form';
 import { Button } from 'react-bootstrap';
 import { onAuthStateChanged } from 'firebase/auth';
 
-function Create() {
+const Create = () => {
     const initialState = {
         recipeName: '',
         recipeText: '',
@@ -53,7 +53,7 @@ function Create() {
             ownerName: authenticatedUser.displayName,
             timestamp: new Date().toISOString(),
         };
-        
+
         dataService.create(data)
             .then(() => {
                 navigate('/')

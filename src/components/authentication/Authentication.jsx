@@ -1,7 +1,5 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
-import { signOut } from "firebase/auth";
-import { auth } from "../../firebase";
 import { NavDropdown } from "react-bootstrap";
 
 import Nav from "react-bootstrap/Nav";

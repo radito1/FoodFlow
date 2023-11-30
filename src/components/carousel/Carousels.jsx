@@ -4,7 +4,7 @@ import styles from './carousels.module.css'
 import Carousel from 'react-bootstrap/Carousel';
 import dataService from '../../services/dataService';
 
-function Carousels() {
+const Carousels = () => {
     const [index, setIndex] = useState(0);
     const [latestPosts, setLatestPosts] = useState([]);
 
@@ -39,7 +39,6 @@ function Carousels() {
     );
 
 };
-
 
 export default Carousels;
 
