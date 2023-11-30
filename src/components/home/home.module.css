@@ -30,3 +30,8 @@
     margin-left: 50px;
     list-style-type: none; 
 }
+
+.latest-info-container {
+    display: flex;
+    align-items: center;
+}
