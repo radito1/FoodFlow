@@ -13,14 +13,8 @@ const Authentication = () => {
         isAuthenticated,
         username,
         email,
+        logoutHandler
     } = useContext(AuthContext);
-
-    const userLogOut = () => {
-        signOut(auth)
-            .then(() => {
-            })
-            .catch(error => console.log(error));
-    }
 
     return (
         <>
@@ -36,7 +30,7 @@ const Authentication = () => {
                         <NavDropdown.Item as={Link} to="/create">Create</NavDropdown.Item>
                         <NavDropdown.Item as={Link} to="/my-recipes">My recipes</NavDropdown.Item>
                         <NavDropdown.Divider />
-                        <NavDropdown.Item as={Link} onClick={userLogOut} to="/">Log Out</NavDropdown.Item>
+                        <NavDropdown.Item as={Link} onClick={logoutHandler} to="/">Log Out</NavDropdown.Item>
                     </NavDropdown>
                 </>
             }

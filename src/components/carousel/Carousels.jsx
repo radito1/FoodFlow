@@ -29,7 +29,7 @@ function Carousels() {
     return (
         <Carousel className={styles['carousel-container']} activeIndex={index} onSelect={handleSelect} slide={false}>
             {latestPosts.map(recipe =>
-                <Carousel.Item key={recipe.id}>
+                <Carousel.Item key={recipe.id} >
                     <img className={styles['carousel-image']} src={recipe.recipePicture} alt={recipe.recipeName} />
                     <Carousel.Caption>
                         <h3>{recipe.recipeName}</h3>
@@ -37,14 +37,10 @@ function Carousels() {
                 </Carousel.Item>)}
         </Carousel>
     );
-}
+
+};
+
 
 export default Carousels;
 
 
-<Carousel.Item>
-    <img className={styles['carousel-image']} src="https://www.acouplecooks.com/wp-content/uploads/2020/06/Caesar-Salad-022-735x919.jpg" alt="" />
-    <Carousel.Caption>
-        <h3>First slide label</h3>
-    </Carousel.Caption>
-</Carousel.Item>

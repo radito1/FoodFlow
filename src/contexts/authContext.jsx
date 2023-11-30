@@ -1,7 +1,7 @@
 import { createContext, useEffect, useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import { auth } from "../firebase";
-import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, updateProfile } from "firebase/auth";
+import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signOut, updateProfile } from "firebase/auth";
 
 import userService from "../services/userService";
 
@@ -69,15 +69,18 @@ export const AuthProvider = ({
             });
     };
 
-    // const logoutHandler = () => {
-    //     setAuthenticatedUser({});
-    //     localStorage.removeItem('accessToken');
-    // };
+    const logoutHandler = () => {
+        signOut(auth)
+            .then(() => {
+                setAuthenticatedUser({})
+            })
+            .catch(error => console.log(error));
+    };
 
     const values = {
         loginSubmitHandler,
         registerSubmitHandler,
-        // logoutHandler,
+        logoutHandler,
         username: authenticatedUser.displayName || authenticatedUser.email,
         email: authenticatedUser.email,
         userId: authenticatedUser.uid,
