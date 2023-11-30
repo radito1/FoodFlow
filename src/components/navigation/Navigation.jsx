@@ -32,7 +32,7 @@ const Navigation = () => {
                                 <NavDropdown.Item as={Link} to="/catalog/baking">Baking</NavDropdown.Item>
                                 <NavDropdown.Item as={Link} to="/catalog/vegetarian-vegan">Vegetarian/Vegan</NavDropdown.Item>
                                 <NavDropdown.Item as={Link} to="/catalog/grilling-bbq">Grilling/BBQ</NavDropdown.Item>
-                                <NavDropdown.Item as={Link} to="/catalog/burgers-sandwitches">Burgers/Sandwiches</NavDropdown.Item>
+                                <NavDropdown.Item as={Link} to="/catalog/burgers-sandwiches">Burgers/Sandwiches</NavDropdown.Item>
                                 <NavDropdown.Item as={Link} to="/catalog/international-cuisine">International Cuisine</NavDropdown.Item>
                             </NavDropdown>
                         </Nav>
