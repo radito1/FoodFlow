@@ -16,16 +16,16 @@ const RecipeDetails = () => {
     const [data, setData] = useState({});
     const { myRecipes } = useParams();
 
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const result = await dataService.getById(id);
-                setData(result);
-            } catch (error) {
-                console.error('Error fetching data:', error);
-            }
-        };
+    const fetchData = async () => {
+        try {
+            const result = await dataService.getById(id);
+            setData(result);
+        } catch (error) {
+            console.error('Error fetching data:', error);
+        }
+    };
 
+    useEffect(() => {
         fetchData();
     }, [id])
     return (

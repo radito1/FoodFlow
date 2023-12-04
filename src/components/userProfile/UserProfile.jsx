@@ -75,6 +75,7 @@ const UserProfile = () => {
                 show={modalShow}
                 onHide={() => setModalShow(false)}
                 uid={userId}
+                data = {userData}
             />
         </div >
     );

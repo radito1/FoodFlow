@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import "./editUserModal.css"
 import userService from '../../services/userService';
@@ -8,22 +8,34 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 
 
-//TODO fix the useState
+//TODO Data doesn't populate on inialial load
 const EditProfileModal = (props) => {
-    const [firstName, setFirstName] = useState('');
-    const [lastName, setLastName] = useState('');
-    const [address, setAddress] = useState('');
-    const [description, setDescription] = useState('');
+    const [userData, setUserData] = useState({
+        firstName: '',
+        lastName: '',
+        address: '',
+        description: '',
+    });
+
+    useEffect(() => {
+        setUserData(props.data);
+    }, [])
+
+    const handleInputChange = (e) => {
+        setUserData({ ...userData, [e.target.name]: e.target.value });
+    };
 
     const updateUser = (e) => {
         e.preventDefault();
 
         let data = {
-            firstName: firstName,
-            lastName: lastName,
-            address: address,
-            description: description
+            firstName: userData.firstName,
+            lastName: userData.lastName,
+            address: userData.address,
+            description: userData.description
         }
+
+        console.log(data)
 
         userService.updateUserData(data, props.uid)
             .then(() => {
@@ -50,19 +62,19 @@ const EditProfileModal = (props) => {
                 <Form>
                     <Form.Group className="mb-3">
                         <Form.Label htmlFor="disabledTextInput">First Name</Form.Label>
-                        <Form.Control id="first-name" value={firstName} onChange={(e) => setFirstName(e.target.value)} />
+                        <Form.Control id="first-name" name='firstName' value={userData.firstName} onChange={handleInputChange} />
                     </Form.Group>
                     <Form.Group className="mb-3">
                         <Form.Label htmlFor="disabledTextInput">Last Name</Form.Label>
-                        <Form.Control id="last-name" value={lastName} onChange={(e) => setLastName(e.target.value)} />
+                        <Form.Control id="last-name" name='lastName' value={userData.lastName} onChange={handleInputChange} />
                     </Form.Group>
                     <Form.Group className="mb-3">
                         <Form.Label htmlFor="disabledTextInput">Adress</Form.Label>
-                        <Form.Control id="address" value={address} onChange={(e) => setAddress(e.target.value)} />
+                        <Form.Control id="address" name='address' value={userData.address} onChange={handleInputChange} />
                     </Form.Group>
                     <Form.Group className="mb-3 text-area">
                         <Form.Label htmlFor="disabledTextInput">Description</Form.Label>
-                        <Form.Control as="textarea" id="description" value={description} onChange={(e) => setDescription(e.target.value)} />
+                        <Form.Control as="textarea" name='description' id="description"  value={userData.description} onChange={handleInputChange} />
                     </Form.Group>
                 </Form>
             </Modal.Body>

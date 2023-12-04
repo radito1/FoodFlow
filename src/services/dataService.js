@@ -82,8 +82,16 @@ const create = (data) => {
   return set(newRecipeRef, data);
 };
 
-const updateRecipe = (key, data) => {
-  return update(ref(recipeRef, key), data);
+const updateRecipe = async (newData, uid) => {
+  const recipeRef = ref(database, `/recipes/${uid}`);
+
+  try {
+      await update(recipeRef, newData);
+      console.log('Recipe data updated successfully.');
+  } catch (error) {
+      console.error('Error updating recipe data:', error);
+      throw error;
+  }
 };
 
 const removeRecipe = (key) => {
