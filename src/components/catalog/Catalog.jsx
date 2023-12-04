@@ -11,7 +11,7 @@ const Catalog = (params) => {
     const [recipes, setRecipes] = useState([]);
     const { category } = useParams();
     const { userId } = useContext(AuthContext);
-
+    
     const fetchData = async (key, value) => {
         try {
             const recipesData = await dataService.getByFilter(`${key}`, `${value}`);
