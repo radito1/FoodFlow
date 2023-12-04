@@ -6,7 +6,6 @@ import styles from './editRecipeModal.module.css'
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
-import { useParams } from 'react-router-dom';
 
 const EditRecipeModal = (props) => {
     const initialState = {
@@ -17,7 +16,6 @@ const EditRecipeModal = (props) => {
         category: '',
     };
     const [recipe, setRecipe] = useState(initialState);
-    const { id } = useParams();
 
     const handleInputChange = (e) => {
         setRecipe({ ...recipe, [e.target.name]: e.target.value });
@@ -34,7 +32,7 @@ const EditRecipeModal = (props) => {
             time: recipe.time,
         }
 
-        dataService.updateRecipe(newData, id)
+        dataService.updateRecipe(newData, props.id)
             .then(() => {
                 props.onHide()
             })

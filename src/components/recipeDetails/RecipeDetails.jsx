@@ -1,25 +1,28 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { getDatabase, ref, onValue } from 'firebase/database';
 
 import dataService from '../../services/dataService';
 import styles from './recipeDetails.module.css'
 
 import Card from 'react-bootstrap/Card';
 import ListGroup from 'react-bootstrap/ListGroup';
-import { Button } from 'react-bootstrap';
+import Button from 'react-bootstrap/Button';
 import EditRecipeModal from '../editRecipe/EditRecipeModal';
 
 
+
 const RecipeDetails = () => {
+    const { myRecipes, id } = useParams();
     const [modalShow, setModalShow] = useState(false);
-    const { id } = useParams();
-    const [data, setData] = useState({});
-    const { myRecipes } = useParams();
+    const [recipeData, setRecipeData] = useState({});
+    const db = getDatabase();
+
 
     const fetchData = async () => {
         try {
             const result = await dataService.getById(id);
-            setData(result);
+            setRecipeData(result);
         } catch (error) {
             console.error('Error fetching data:', error);
         }
@@ -27,17 +30,33 @@ const RecipeDetails = () => {
 
     useEffect(() => {
         fetchData();
+        const userRef = ref(db, `/recipes/${id}`);
+
+        const onDataChange = (snapshot) => {
+            const data = snapshot.val();
+            setRecipeData(data);
+        };
+
+        const onError = (error) => {
+            console.error('Error fetching recipe data:', error);
+        };
+
+        const unsubscribe = onValue(userRef, onDataChange, { errorCallback: onError });
+
+        return () => {
+            unsubscribe();
+        };
     }, [id])
     return (
         <div className={styles['recipeDetails-container']}>
             <Card style={{ width: '25rem' }}>
-                <Card.Img variant="top" src={data.recipePicture} />
+                <Card.Img variant="top" src={recipeData.recipePicture} />
                 <Card.Body>
-                    <Card.Title>{data.recipeName}</Card.Title>
-                    <Card.Text>Preparation time: {data.time}</Card.Text>
+                    <Card.Title>{recipeData.recipeName}</Card.Title>
+                    <Card.Text>Preparation time: {recipeData.time}</Card.Text>
                 </Card.Body>
                 <ListGroup className="list-group-flush">
-                    <ListGroup.Item>{data.recipeText}</ListGroup.Item>
+                    <ListGroup.Item>{recipeData.recipeText}</ListGroup.Item>
                 </ListGroup>
                 {myRecipes
                     ?
@@ -56,6 +75,8 @@ const RecipeDetails = () => {
             <EditRecipeModal
                 show={modalShow}
                 onHide={() => setModalShow(false)}
+                id = {id}
+                data = {recipeData}
             />
 
         </div>
