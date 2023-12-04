@@ -6,10 +6,13 @@ import styles from './recipeDetails.module.css'
 
 import Card from 'react-bootstrap/Card';
 import ListGroup from 'react-bootstrap/ListGroup';
+import { Button } from 'react-bootstrap';
+
 
 const RecipeDetails = () => {
     const { id } = useParams();
     const [data, setData] = useState({});
+    const { myRecipes } = useParams();
 
     useEffect(() => {
         const fetchData = async () => {
@@ -34,6 +37,14 @@ const RecipeDetails = () => {
                 <ListGroup className="list-group-flush">
                     <ListGroup.Item>{data.recipeText}</ListGroup.Item>
                 </ListGroup>
+                {myRecipes
+                    ?
+                    <div className={styles['buttons']}>
+                        <Button variant="primary">Edit</Button>
+                        <Button variant="danger">Delete</Button>
+                    </div>
+                    : ''
+                }
             </Card>
         </div>
     );

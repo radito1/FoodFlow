@@ -36,7 +36,6 @@ const getById = async (id) => {
   }
 };
 
-
 const getByFilter = async (filterKey, filterValue) => {
   try {
     const filteredSnapshot = await get(
