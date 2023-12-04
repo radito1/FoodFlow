@@ -56,7 +56,7 @@ const Create = () => {
 
         dataService.create(data)
             .then(() => {
-                navigate('/')
+                navigate('/catalog/all-recipes')
             })
             .catch(e => {
                 console.log(e);
