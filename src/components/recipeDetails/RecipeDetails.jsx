@@ -7,9 +7,11 @@ import styles from './recipeDetails.module.css'
 import Card from 'react-bootstrap/Card';
 import ListGroup from 'react-bootstrap/ListGroup';
 import { Button } from 'react-bootstrap';
+import EditRecipeModal from '../editRecipe/EditRecipeModal';
 
 
 const RecipeDetails = () => {
+    const [modalShow, setModalShow] = useState(false);
     const { id } = useParams();
     const [data, setData] = useState({});
     const { myRecipes } = useParams();
@@ -40,12 +42,22 @@ const RecipeDetails = () => {
                 {myRecipes
                     ?
                     <div className={styles['buttons']}>
-                        <Button variant="primary">Edit</Button>
-                        <Button variant="danger">Delete</Button>
+                        <Button variant="primary" onClick={() => setModalShow(true)}>
+                            Edit
+                        </Button>
+                        <Button variant="danger">
+                            Delete
+                        </Button>
                     </div>
                     : ''
                 }
             </Card>
+
+            <EditRecipeModal
+                show={modalShow}
+                onHide={() => setModalShow(false)}
+            />
+
         </div>
     );
 }

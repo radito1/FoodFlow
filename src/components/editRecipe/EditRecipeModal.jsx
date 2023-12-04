@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import "./editUserModal.css"
+import styles from './editRecipeModal.module.css'
 
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
@@ -54,13 +54,13 @@ const EditRecipeModal = (props) => {
                     <Form.Label>Recipe name</Form.Label>
                     <Form.Control type="text"
                         value={recipe.recipeName}
-                        onChange={handleInputChange}
+                        // onChange={handleInputChange}
                         name="recipeName"
                     />
                 </Form.Group>
                 <Form.Group className="mb-3">
                     <Form.Label>Select category</Form.Label>
-                    <Form.Select aria-label="Default select example" name="category" onChange={handleInputChange} value={recipe.category}>
+                    <Form.Select aria-label="Default select example" name="category"  value={recipe.category}>
                         <option>Select Category</option>
                         <option>Appetizers</option>
                         <option>Main Courses</option>
@@ -79,13 +79,13 @@ const EditRecipeModal = (props) => {
                     <Form.Label>Recipe image</Form.Label>
                     <Form.Control type="text"
                         value={recipe.recipePicture}
-                        onChange={handleInputChange}
+                        // onChange={handleInputChange}
                         name="recipePicture"
                     />
                 </Form.Group>
                 <Form.Group className="mb-3">
                     <Form.Label>Select preparation time</Form.Label>
-                    <Form.Select aria-label="Default select example" name="time" onChange={handleInputChange} value={recipe.time}>
+                    <Form.Select aria-label="Default select example" name="time"  value={recipe.time}>
                         <option>less then 15min</option>
                         <option>15min</option>
                         <option>30min</option>
@@ -102,12 +102,9 @@ const EditRecipeModal = (props) => {
                     <Form.Label>Recipe text</Form.Label>
                     <Form.Control as="textarea"
                         value={recipe.recipeText}
-                        onChange={handleInputChange}
+                        // onChange={handleInputChange}
                         name="recipeText" rows={3} />
                 </Form.Group>
-                <Button variant="primary" onClick={saveRecipe}>
-                    Submit
-                </Button>
             </Form>
             </Modal.Body>
             <Modal.Footer>
