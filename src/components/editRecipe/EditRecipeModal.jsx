@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import dataService from '../../services/dataService';
 
 import styles from './editRecipeModal.module.css'
@@ -16,6 +16,10 @@ const EditRecipeModal = (props) => {
         category: '',
     };
     const [recipe, setRecipe] = useState(initialState);
+
+    useEffect(()=>{
+        setRecipe(props.data)
+    }, [props.data])
 
     const handleInputChange = (e) => {
         setRecipe({ ...recipe, [e.target.name]: e.target.value });
@@ -56,7 +60,7 @@ const EditRecipeModal = (props) => {
             <Modal.Body>
                 <Form className={styles.form}>
                     <Form.Group controlId="exampleForm.ControlInput1">
-                        <Form.Label>Recipe name</Form.Label>
+                        <Form.Label >Recipe name</Form.Label>
                         <Form.Control type="text"
                             value={recipe.recipeName}
                             onChange={handleInputChange}
@@ -64,8 +68,8 @@ const EditRecipeModal = (props) => {
                         />
                     </Form.Group>
                     <Form.Group className="mb-3">
-                        <Form.Label>Select category</Form.Label>
-                        <Form.Select aria-label="Default select example" name="category" onChange={handleInputChange} value={recipe.category}>
+                        <Form.Label htmlFor='category'>Select category</Form.Label>
+                        <Form.Select aria-label="Default select example" name="category" id='category' onChange={handleInputChange} value={recipe.category}>
                             <option>Select Category</option>
                             <option>Appetizers</option>
                             <option>Main Courses</option>
@@ -89,8 +93,8 @@ const EditRecipeModal = (props) => {
                         />
                     </Form.Group>
                     <Form.Group className="mb-3">
-                        <Form.Label>Select preparation time</Form.Label>
-                        <Form.Select aria-label="Default select example" name="time" onChange={handleInputChange} value={recipe.time}>
+                        <Form.Label htmlFor='time'>Select preparation time</Form.Label>
+                        <Form.Select aria-label="Default select example" name="time" id='time' onChange={handleInputChange} value={recipe.time}>
                             <option>less then 15min</option>
                             <option>15min</option>
                             <option>30min</option>

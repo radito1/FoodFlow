@@ -19,7 +19,7 @@ const EditProfileModal = (props) => {
 
     useEffect(() => {
         setUserData(props.data);
-    }, [])
+    }, [props.data])
 
     const handleInputChange = (e) => {
         setUserData({ ...userData, [e.target.name]: e.target.value });
@@ -61,19 +61,19 @@ const EditProfileModal = (props) => {
             <Modal.Body>
                 <Form>
                     <Form.Group className="mb-3">
-                        <Form.Label htmlFor="disabledTextInput">First Name</Form.Label>
-                        <Form.Control id="first-name" name='firstName' value={userData.firstName} onChange={handleInputChange} />
+                        <Form.Label htmlFor="firstName">First Name</Form.Label>
+                        <Form.Control id="firstName" name='firstName' value={userData.firstName} onChange={handleInputChange} />
                     </Form.Group>
                     <Form.Group className="mb-3">
-                        <Form.Label htmlFor="disabledTextInput">Last Name</Form.Label>
-                        <Form.Control id="last-name" name='lastName' value={userData.lastName} onChange={handleInputChange} />
+                        <Form.Label htmlFor="lastName">Last Name</Form.Label>
+                        <Form.Control id="lastName" name='lastName' value={userData.lastName} onChange={handleInputChange} />
                     </Form.Group>
                     <Form.Group className="mb-3">
-                        <Form.Label htmlFor="disabledTextInput">Adress</Form.Label>
+                        <Form.Label htmlFor="address">Adress</Form.Label>
                         <Form.Control id="address" name='address' value={userData.address} onChange={handleInputChange} />
                     </Form.Group>
                     <Form.Group className="mb-3 text-area">
-                        <Form.Label htmlFor="disabledTextInput">Description</Form.Label>
+                        <Form.Label htmlFor="description">Description</Form.Label>
                         <Form.Control as="textarea" name='description' id="description"  value={userData.description} onChange={handleInputChange} />
                     </Form.Group>
                 </Form>

@@ -26,16 +26,6 @@ const getUserData = async (uid) => {
     }
 };
 
-const getUserDataObserver = (userId, onData, onError) => {
-    const userRef = ref(db, `/users/${userId}`);
-
-    const unsubscribe = onValue(userRef, onData, { errorCallback: onError });
-
-    return () => {
-        unsubscribe();
-    };
-};
-
 //TODO: test if it updates the database and not overwrite it ! 
 const updateUserData = async (newData, uid) => {
     const userRef = ref(database, `/users/${uid}`);
@@ -52,6 +42,5 @@ const updateUserData = async (newData, uid) => {
 export default {
     create,
     getUserData,
-    getUserDataObserver,
     updateUserData,
 };
