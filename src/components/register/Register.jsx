@@ -98,7 +98,7 @@ const RegisterFormKeys = {
 const schema = yup.object().shape({
     [RegisterFormKeys.Username]: yup.string().required('Username is required'),
     [RegisterFormKeys.Email]: yup.string().email('Invalid email').required('Email is required'),
-    [RegisterFormKeys.Password]: yup.string().required('Password is required'),
+    [RegisterFormKeys.Password]: yup.string().min(6,'Password must be atleast 6 characters long').required('Password is required'),
 });
 
 const Register = () => {
