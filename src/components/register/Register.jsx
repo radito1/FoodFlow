@@ -3,7 +3,7 @@ import { useContext } from "react";
 
 import styles from '../login/login.module.css';
 import AuthContext from "../../contexts/authContext";
-import useForm from "../../hooks/useForm";
+import useForms from "../../hooks/useForms";
 
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
@@ -17,7 +17,7 @@ const RegisterFormKeys = {
 const Register = () => {
     const navigate = useNavigate('');
     const { registerSubmitHandler } = useContext(AuthContext);
-    const { values, onChange, onSubmit } = useForm(registerSubmitHandler, {
+    const { values, onChange, onSubmit } = useForms(registerSubmitHandler, {
         [RegisterFormKeys.Username]: '',
         [RegisterFormKeys.Email]: '',
         [RegisterFormKeys.Password]: '',

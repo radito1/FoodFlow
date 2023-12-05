@@ -5,7 +5,7 @@ import styles from './login.module.css';
 
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-import useForm from '../../hooks/useForm';
+import useForms from '../../hooks/useForms';
 import AuthContext from '../../contexts/authContext';
 
 const LoginFormKyes = {
@@ -16,7 +16,7 @@ const LoginFormKyes = {
 const Login = () => {
     const navigate = useNavigate('');
     const { loginSubmitHandler } = useContext(AuthContext);
-    const { values, onChange, onSubmit } = useForm(loginSubmitHandler, {
+    const { values, onChange, onSubmit } = useForms(loginSubmitHandler, {
         [LoginFormKyes.Email]: '',
         [LoginFormKyes.Password]: '',
     });
