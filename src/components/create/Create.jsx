@@ -229,7 +229,6 @@ const Create = () => {
                         {...register('category')}
                         placeholder="Select Category"
                     >
-                        <option>Select Category</option>
                         <option>Appetizers</option>
                         <option>Main Courses</option>
                         <option>Soups</option>
