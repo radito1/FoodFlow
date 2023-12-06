@@ -13,13 +13,13 @@ const Home = () => {
 
             <div className={styles['latest-container']}>
                 <h2>Latest Culinary Delights Unveiled!</h2>
-                <div className={styles['latest-section']}>
                     <Carousels />
+                <div className={styles['latest-section']}>
                     <div className={styles['latest-info-container']}>
-                        <ul className={styles['latest-info']}>
-                            <li>👨‍🍳 Fresh Ideas Every Day: Immerse yourself in a carousel of inspiration, featuring the most recent and mouthwatering creations. Our chefs, both seasoned and aspiring, bring fresh ideas to your plate daily.</li>
-                            <li>🌟 Tried, Tested, and Loved: These recipes aren't just visually appealing; they've been tried, tested, and loved by our vibrant community. Join the conversation, try them at home, and let your taste buds dance!</li>
-                        </ul>
+                        <div className={styles['latest-info']}>
+                            <p>👨‍🍳 Fresh Ideas Every Day: Immerse yourself in a carousel of inspiration, featuring the most recent and mouthwatering creations. Our chefs, both seasoned and aspiring, bring fresh ideas to your plate daily.</p>
+                            <p>🌟 Tried, Tested, and Loved: These recipes aren't just visually appealing; they've been tried, tested, and loved by our vibrant community. Join the conversation, try them at home, and let your taste buds dance!</p>
+                        </div>
                     </div>
                 </div>
             </div>
