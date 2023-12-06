@@ -1,7 +1,8 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { getDatabase, ref, onValue } from 'firebase/database';
 
+import AuthContext from '../../contexts/authContext';
 import dataService from '../../services/dataService';
 import styles from './recipeDetails.module.css'
 
@@ -13,6 +14,7 @@ import ConfirmationModal from '../confirmationModal/ConfirmationModal';
 
 const RecipeDetails = () => {
     const { myRecipes, id } = useParams();
+    const { isAuthenticated } = useContext(AuthContext);
     const [modalShow, setModalShow] = useState(false);
     const [secondModalShow, setSecondModalShow] = useState(false);
     const [recipeData, setRecipeData] = useState({});
@@ -75,6 +77,19 @@ const RecipeDetails = () => {
                     : ''
                 }
             </Card>
+            {isAuthenticated
+                ?
+                <article className="create-comment">
+                    <label htmlFor='comment'>Add new comment:</label>
+                    <form className="form" >
+                        <textarea id='comment' name="comment"placeholder="Comment......"></textarea>
+                        <input className="btn submit" type="submit" value="Add Comment" />
+                    </form>
+                </article>
+                : ''
+            }
+
+
 
             <EditRecipeModal
                 show={modalShow}
