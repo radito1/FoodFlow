@@ -27,7 +27,7 @@ const RecipeDetails = () => {
     const { isAuthenticated, username } = useContext(AuthContext);
     const [modalShow, setModalShow] = useState(false);
     const [secondModalShow, setSecondModalShow] = useState(false);
-    const [comments, dispatch] = useReducer(reducer, []);
+    const [comments, dispatch] = useReducer(reducer, null);
     const [recipeData, setRecipeData] = useState({});
     const [commentsDispatched, setCommentsDispatched] = useState(false)
     const db = getDatabase();
@@ -60,7 +60,7 @@ const RecipeDetails = () => {
             const commentsData = snapshot.val();
             if (commentsData) {
                 const commentsArray = Object.entries(commentsData).map(([key, value]) => ({ id: key, ...value }));
-                dispatch({ type: 'GET_ALL_COMMENTS', payload: commentsArray });
+                dispatch({ type: 'SET_COMMENTS', payload: commentsArray });
                 setCommentsDispatched(true);
             }
         });
@@ -73,19 +73,15 @@ const RecipeDetails = () => {
     }, [id, commentsDispatched]);
 
     const addCommentHandler = async (values) => {
-
         const data = {
             comment: values.comment,
             owner: username,
-        }
+        };
 
         try {
-            const newComment = await commentService.create(id, data);
-
-            dispatch({
-                type: 'ADD_COMMENT',
-                payload: newComment,
-            });
+            await commentService.create(id, data);
+            const updatedComments = await commentService.getAll(id);
+            dispatch({ type: 'SET_COMMENTS', payload: updatedComments });
 
             setValue('comment', '');
         } catch (error) {
@@ -132,7 +128,7 @@ const RecipeDetails = () => {
                 }
             </Card>
 
-            {comments &&
+            {comments && (
                 <>
                     {comments.map((comment) => (
                         <ListGroup.Item key={comment.id}>
@@ -147,7 +143,7 @@ const RecipeDetails = () => {
                         </ListGroup.Item>
                     ))}
                 </>
-            }
+            )}
 
             {isAuthenticated
                 ?

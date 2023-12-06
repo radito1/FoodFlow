@@ -3,29 +3,24 @@ import { database } from '../firebase';
 
 const commentRef = ref(database, '/comments');
 
-const getAll = async () => {
-    try {
-        const snapshot = await get(commentRef);
-        if (snapshot.exists()) {
-            return snapshot.val();
-        } else {
-            console.log('No comments available');
-            return null;
-        }
-    } catch (error) {
-        console.error('Error fetching data:', error);
-        throw error;
+const getAll = async (id) => {
+    const commentsRef = ref(database, `/comments/${id}`);
+    const snapshot = await get(commentsRef);
+
+    if (snapshot.exists()) {
+        return Object.entries(snapshot.val()).map(([key, value]) => ({ id: key, ...value }));
+    } else {
+        console.log('No comments available');
+        return [];
     }
 };
 
 const create = async (id, data) => {
-    const commentsRef = ref(database, `/comments/${id}`);
-    const newCommentRef = push(commentsRef);
-
+    const newCommentRef = push(ref(database, `/comments/${id}`));
     await set(newCommentRef, data);
 
     const snapshot = await get(newCommentRef);
-    return snapshot.val();
+    return { id: newCommentRef.key, ...snapshot.val() };
 };
 
 export default {
