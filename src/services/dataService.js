@@ -100,9 +100,6 @@ const removeRecipe = (id) => {
     return remove(recipeRef);
 };
 
-
-
-
 export default {
     getAll,
     getById,

@@ -1,13 +1,15 @@
 import { useContext, useEffect, useReducer, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { getDatabase, ref, onValue } from 'firebase/database';
-import { useForm, SubmitHandler, SubmitErrorHandler } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
 import * as Yup from 'yup';
 
 import AuthContext from '../../contexts/authContext';
 import dataService from '../../services/dataService';
 import reducer from './commentReduce';
 import styles from './recipeDetails.module.css'
+import commentService from '../../services/commentService';
 
 import Card from 'react-bootstrap/Card';
 import ListGroup from 'react-bootstrap/ListGroup';
@@ -22,14 +24,14 @@ const commentSchema = Yup.object().shape({
 
 const RecipeDetails = () => {
     const { myRecipes, id } = useParams();
-    const { isAuthenticated } = useContext(AuthContext);
+    const { isAuthenticated, username } = useContext(AuthContext);
     const [modalShow, setModalShow] = useState(false);
     const [secondModalShow, setSecondModalShow] = useState(false);
     const [comments, dispatch] = useReducer(reducer, []);
     const [recipeData, setRecipeData] = useState({});
     const db = getDatabase();
     const navigate = useNavigate();
-    const { register, handleSubmit, setValue, formState: { errors } } = useForm < CommentForm > ({
+    const { register, handleSubmit, setValue, formState: { errors } } = useForm({
         resolver: yupResolver(commentSchema),
     });
 
@@ -57,16 +59,20 @@ const RecipeDetails = () => {
     }, [id]);
 
     const addCommentHandler = async (values) => {
-        try {
-            const newComment = await commentService.create(id, values.comment);
-            newComment.owner = { email };
 
+        const data = {
+            comment: values.comment,
+            owner: username,
+        }
+
+        try {
+            const newComment = await commentService.create(id, data);
+            console.log(newComment)
             dispatch({
                 type: 'ADD_COMMENT',
                 payload: newComment,
             });
 
-            // Clear the comment field after successful submission
             setValue('comment', '');
         } catch (error) {
             console.log(error);
@@ -86,10 +92,6 @@ const RecipeDetails = () => {
                 console.error('Error removing recipe:', error);
             });
     }
-
-    // const { values, onChange, onSubmit } = useForm(addCommentHandler, {
-    //     comment: '',
-    // });
 
     return (
         <div className={styles['recipeDetails-container']}>
