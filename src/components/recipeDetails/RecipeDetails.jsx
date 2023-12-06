@@ -29,11 +29,13 @@ const RecipeDetails = () => {
     const [secondModalShow, setSecondModalShow] = useState(false);
     const [comments, dispatch] = useReducer(reducer, []);
     const [recipeData, setRecipeData] = useState({});
+    const [commentsDispatched, setCommentsDispatched] = useState(false)
     const db = getDatabase();
     const navigate = useNavigate();
     const { register, handleSubmit, setValue, formState: { errors } } = useForm({
         resolver: yupResolver(commentSchema),
     });
+
 
     useEffect(() => {
         if (!id) {
@@ -53,10 +55,22 @@ const RecipeDetails = () => {
 
         const unsubscribe = onValue(userRef, onDataChange, { errorCallback: onError });
 
+        const commentsRef = ref(db, `/comments/${id}`);
+        const commentsListener = onValue(commentsRef, (snapshot) => {
+            const commentsData = snapshot.val();
+            if (commentsData) {
+                const commentsArray = Object.entries(commentsData).map(([key, value]) => ({ id: key, ...value }));
+                dispatch({ type: 'GET_ALL_COMMENTS', payload: commentsArray });
+                setCommentsDispatched(true);
+            }
+        });
+
         return () => {
             unsubscribe();
+            commentsListener();
+            setCommentsDispatched(false);
         };
-    }, [id]);
+    }, [id, commentsDispatched]);
 
     const addCommentHandler = async (values) => {
 
@@ -67,7 +81,7 @@ const RecipeDetails = () => {
 
         try {
             const newComment = await commentService.create(id, data);
-            console.log(newComment)
+
             dispatch({
                 type: 'ADD_COMMENT',
                 payload: newComment,
@@ -117,22 +131,43 @@ const RecipeDetails = () => {
                     : ''
                 }
             </Card>
+
+            {comments &&
+                <>
+                    {comments.map((comment) => (
+                        <ListGroup.Item key={comment.id}>
+                            <div className={styles['comment-container']}>
+                                <div className={styles.username}>
+                                    {comment.owner}
+                                </div>
+                                <div className={styles.comment}>
+                                    {comment.comment}
+                                </div>
+                            </div>
+                        </ListGroup.Item>
+                    ))}
+                </>
+            }
+
             {isAuthenticated
                 ?
                 <article className="create-comment">
                     <Form onSubmit={handleSubmit(addCommentHandler)}>
                         <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
-                            <Form.Label>Add Comment</Form.Label>
+                            <Form.Label className={styles.label}>Add Comment</Form.Label>
                             <Form.Control as="textarea" rows={3} {...register('comment')} onChange={handleInputChange} />
-                            <Form.Text className="text-danger">{errors.comment?.message}</Form.Text>
-                            <Button variant="primary" type="submit">
-                                Add
-                            </Button>
+                            <div className={styles.inform}>
+                                <Form.Text className="text-danger">{errors.comment?.message}</Form.Text>
+                                <Button variant="primary" type="submit">
+                                    Add
+                                </Button>
+                            </div>
                         </Form.Group>
                     </Form>
                 </article>
                 : ''
             }
+
 
             <EditRecipeModal
                 show={modalShow}
