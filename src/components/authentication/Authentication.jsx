@@ -25,7 +25,7 @@ const Authentication = () => {
                 <>
                     <NavDropdown title={`${username}` || `${email}`} id="collapsible-nav-dropdown">
                         <NavDropdown.Item as={Link} to="/my-profile">My profile</NavDropdown.Item>
-                        <NavDropdown.Item as={Link} to="/create">Create</NavDropdown.Item>
+                        <NavDropdown.Item as={Link} to="/add-recipe">Add recipe</NavDropdown.Item>
                         <NavDropdown.Item as={Link} to="/user/catalog/my-recipes">My recipes</NavDropdown.Item>
                         <NavDropdown.Divider />
                         <NavDropdown.Item as={Link} onClick={logoutHandler} to="/">Log Out</NavDropdown.Item>
