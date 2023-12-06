@@ -11,13 +11,14 @@ import Create from "./components/create/Create"
 import Catalog from "./components/catalog/Catalog"
 import UserProfile from "./components/userProfile/UserProfile"
 import RecipeDetails from "./components/recipeDetails/RecipeDetails"
+import Footer from "./components/footer/Footer";
 
-const App = () => {    
+const App = () => {
     return (
         <>
             <AuthProvider>
-                <Navigation />
                 <div className={style['main-container']}>
+                    <Navigation />
                     <Routes>
                         <Route path="/" element={<Home />} />
                         <Route path="/login" element={<Login />} />
@@ -30,6 +31,7 @@ const App = () => {
                         <Route path="/user/catalog/:myRecipes/:id" element={<RecipeDetails />} />
                         <Route path="/my-profile" element={<UserProfile />} />
                     </Routes>
+                    <Footer />
                 </div>
             </AuthProvider>
         </>
