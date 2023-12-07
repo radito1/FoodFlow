@@ -2,6 +2,7 @@ import { Route, Routes } from "react-router-dom"
 import { AuthProvider } from "./contexts/authContext";
 
 import style from './main.module.css';
+import 'react-toastify/dist/ReactToastify.css';
 
 import Login from "./components/login/Login"
 import Navigation from "./components/navigation/Navigation"
@@ -12,10 +13,12 @@ import Catalog from "./components/catalog/Catalog"
 import UserProfile from "./components/userProfile/UserProfile"
 import RecipeDetails from "./components/recipeDetails/RecipeDetails"
 import Footer from "./components/footer/Footer";
+import { ToastContainer } from "react-toastify";
 
 const App = () => {
     return (
         <>
+            <ToastContainer />
             <AuthProvider>
                 <div className={style['main-container']}>
                     <Navigation />

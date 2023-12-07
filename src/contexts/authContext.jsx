@@ -2,10 +2,22 @@ import { createContext, useEffect, useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import { auth } from "../firebase";
 import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signOut, updateProfile } from "firebase/auth";
+import { toast } from 'react-toastify';
 
+import 'react-toastify/dist/ReactToastify.css';
 import userService from "../services/userService";
 
 const AuthContext = createContext();
+
+const notifySuccess = (text) => toast.success(`${text}`, {
+    position: 'top-center',
+    autoClose: 3000,
+});
+
+const notifyError = (text) => toast.success(`${text}`, {
+    position: 'top-center',
+    autoClose: 3000,
+});
 
 export const AuthProvider = ({
     children,
@@ -32,11 +44,13 @@ export const AuthProvider = ({
 
         return signInWithEmailAndPassword(auth, values.email, values.password)
             .then(data => {
-                setAuthenticatedUser(data.user)
-                navigate('/')
+                setAuthenticatedUser(data.user);
+                navigate('/');
+                notifySuccess('Login Successful!');
             })
             .catch((error) => {
                 console.log(error);
+                notifyError('There was an error trying to log you in!');
             });
     };
 
@@ -63,16 +77,19 @@ export const AuthProvider = ({
                 saveUser(userCredential.user.uid);
                 setAuthenticatedUser(userCredential.user);
                 navigate('/');
+                notifySuccess('Register Successful!');
             })
             .catch((error) => {
                 console.log(error);
+                notifyError('There was an error while trying to register!');
             });
     };
 
     const logoutHandler = () => {
         signOut(auth)
             .then(() => {
-                setAuthenticatedUser({})
+                setAuthenticatedUser({});
+                notifySuccess('Logout Successful!');
             })
             .catch(error => console.log(error));
     };
