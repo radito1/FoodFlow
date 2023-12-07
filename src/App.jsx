@@ -14,6 +14,7 @@ import UserProfile from "./components/userProfile/UserProfile"
 import RecipeDetails from "./components/recipeDetails/RecipeDetails"
 import Footer from "./components/footer/Footer";
 import { ToastContainer } from "react-toastify";
+import NotFound from "./components/notFound/NotFound";
 
 const App = () => {
     return (
@@ -33,6 +34,7 @@ const App = () => {
                         <Route path="/recipe/:id" element={<RecipeDetails />} />
                         <Route path="/user/catalog/:myRecipes/:id" element={<RecipeDetails />} />
                         <Route path="/my-profile" element={<UserProfile />} />
+                        <Route path="*" element={<NotFound />} />
                     </Routes>
                     <Footer />
                 </div>
