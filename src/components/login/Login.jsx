@@ -16,7 +16,7 @@ const LoginFormKeys = {
 
 const schema = yup.object().shape({
     [LoginFormKeys.Email]: yup.string().email('Invalid email').required('Email is required'),
-    [LoginFormKeys.Password]: yup.string().min(6,'Password must be atleast 6 characters long').required('Password is required'),
+    [LoginFormKeys.Password]: yup.string().min(6, 'Password must be atleast 6 characters long').required('Password is required'),
 });
 
 const Login = () => {
@@ -44,6 +44,7 @@ const Login = () => {
                         type="email"
                         {...register(LoginFormKeys.Email)}
                         placeholder="Enter email"
+                        autoComplete="email-input"
                     />
                     <Form.Text className="text-danger">{errors[LoginFormKeys.Email]?.message}</Form.Text>
                 </Form.Group>
@@ -53,11 +54,15 @@ const Login = () => {
                         type="password"
                         {...register(LoginFormKeys.Password)}
                         placeholder="Password"
+                        autoComplete="current-password"
                     />
                     <Form.Text className="text-danger">{errors[LoginFormKeys.Password]?.message}</Form.Text>
                 </Form.Group>
                 <Form.Text className="text-muted">
-                    Already a registered user? <span className={styles.navigate} onClick={navigateRegister}>Register now</span>.
+                    Already a registered user?
+                    <span className={styles.navigate} onClick={navigateRegister}>
+                        Register now
+                    </span>.
                 </Form.Text>
                 <div className={styles['button-container']}>
                     <Button variant="primary" type="submit">

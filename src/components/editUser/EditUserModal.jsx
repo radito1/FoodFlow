@@ -1,6 +1,6 @@
-import { useEffect} from 'react';
+import { useEffect } from 'react';
 import { yupResolver } from '@hookform/resolvers/yup';
-import * as Yup from 'yup'; 
+import * as Yup from 'yup';
 import { useForm } from 'react-hook-form';
 import { notifySuccess, notifyError } from '../../utils/toasts';
 
@@ -24,7 +24,7 @@ const EditProfileModal = (props) => {
     });
 
     useEffect(() => {
-        if (props.data) {            
+        if (props.data) {
             setValue('firstName', props.data.firstName);
             setValue('lastName', props.data.lastName);
             setValue('address', props.data.address);
@@ -58,23 +58,23 @@ const EditProfileModal = (props) => {
             <Modal.Body>
                 <Form onSubmit={handleSubmit(updateUser)}>
                     <Form.Group className="mb-3">
-                        <Form.Label htmlFor="firstName" >First Name</Form.Label>
-                        <Form.Control id='firstName' {...register('firstName')} />
+                        <Form.Label htmlFor="firstName">First Name</Form.Label>
+                        <Form.Control id='firstName' {...register('firstName')} autoComplete="custom-autocomplete-1" />
                         <Form.Text className="text-danger">{errors.firstName?.message}</Form.Text>
                     </Form.Group>
                     <Form.Group className="mb-3">
-                        <Form.Label htmlFor="lastName" >Last Name</Form.Label>
-                        <Form.Control id='lastName' {...register('lastName')} />
+                        <Form.Label htmlFor="lastName">Last Name</Form.Label>
+                        <Form.Control id='lastName' {...register('lastName')} autoComplete="custom-autocomplete-2" />
                         <Form.Text className="text-danger">{errors.lastName?.message}</Form.Text>
                     </Form.Group>
                     <Form.Group className="mb-3">
-                        <Form.Label htmlFor="address" >Address</Form.Label>
-                        <Form.Control id='address' {...register('address')} />
+                        <Form.Label htmlFor="address">Address</Form.Label>
+                        <Form.Control id='address' {...register('address')} autoComplete="custom-autocomplete-3" />
                         <Form.Text className="text-danger">{errors.address?.message}</Form.Text>
                     </Form.Group>
                     <Form.Group className="mb-3 text-area">
-                        <Form.Label htmlFor="description" >Description</Form.Label>
-                        <Form.Control id='description' as="textarea" {...register('description')} />
+                        <Form.Label htmlFor="description">Description</Form.Label>
+                        <Form.Control id='description' as="textarea" {...register('description')} autoComplete="custom-autocomplete-4" />
                         <Form.Text className="text-danger">{errors.description?.message}</Form.Text>
                     </Form.Group>
                     <Button type="submit">Save</Button>

@@ -126,6 +126,7 @@ const Register = () => {
                         type="username"
                         {...register(RegisterFormKeys.Username)}
                         placeholder="Enter username"
+                        autoComplete="username"
                     />
                     <Form.Text className="text-danger">{errors[RegisterFormKeys.Username]?.message}</Form.Text>
                 </Form.Group>
@@ -134,7 +135,8 @@ const Register = () => {
                     <Form.Control
                         type="email"
                         {...register(RegisterFormKeys.Email)}
-                        placeholder="Enter email"
+                        placeholder="email"
+                        autoComplete='email'                        
                     />
                     <Form.Text className="text-danger">{errors[RegisterFormKeys.Email]?.message}</Form.Text>
                 </Form.Group>
@@ -144,6 +146,7 @@ const Register = () => {
                         type="password"
                         {...register(RegisterFormKeys.Password)}
                         placeholder="Password"
+                        autoComplete="current-password"
                     />
                     <Form.Text className="text-danger">{errors[RegisterFormKeys.Password]?.message}</Form.Text>
                 </Form.Group>

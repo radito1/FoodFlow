@@ -1,17 +1,17 @@
-import { useEffect, useState } from 'react';
+import { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import { notifySuccess, notifyError } from '../../utils/toasts';
+import AuthContext from '../../contexts/authContext';
+
 
 import styles from './create.module.css';
 import dataService from '../../services/dataService';
-import { auth } from '../../firebase';
 
 import Form from 'react-bootstrap/Form';
 import { Button } from 'react-bootstrap';
-import { onAuthStateChanged } from 'firebase/auth';
 
 const Create = () => {
     const initialState = {
@@ -22,22 +22,11 @@ const Create = () => {
         time: '',
         ownerId: '',
     };
-    const [authenticatedUser, setAuthenticatedUser] = useState('');
     const navigate = useNavigate('');
-
-    useEffect(() => {
-        const listenAuth = onAuthStateChanged(auth, (user) => {
-            if (user) {
-                setAuthenticatedUser(user);
-            } else {
-                navigate('/login');
-            }
-        });
-
-        return () => {
-            listenAuth();
-        };
-    }, []);
+    const {
+        userId,
+        username
+    } = useContext(AuthContext);
 
     const schema = yup.object().shape({
         recipeName: yup.string().required('Recipe name is required'),
@@ -61,8 +50,8 @@ const Create = () => {
             category: categoryFix,
             recipePicture: data.recipePicture,
             time: data.time,
-            ownerId: authenticatedUser.uid,
-            ownerName: authenticatedUser.displayName,
+            ownerId: userId,
+            ownerName: username,
             timestamp: new Date().toISOString(),
         };
 
