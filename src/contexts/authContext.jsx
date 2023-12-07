@@ -2,7 +2,7 @@ import { createContext, useEffect, useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import { auth } from "../firebase";
 import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signOut, updateProfile } from "firebase/auth";
-import { notifySuccess, notifyError } from '../../utils/toasts';
+import { notifySuccess, notifyError } from '../utils/toasts';
 
 import userService from "../services/userService";
 
