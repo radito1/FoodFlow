@@ -21,7 +21,7 @@ Welcome to the documentation for the Food Flow app! Food Flow is an online platf
 ## Features
 
 1. **Recipe Browsing:**
-   - Browse recipes by categories on the homepage.
+   - Browse recipes by categories.
    - View details of each recipe.
 
 2. **User Authentication:**
@@ -33,7 +33,7 @@ Welcome to the documentation for the Food Flow app! Food Flow is an online platf
    - See owned recipes in the user's profile.
 
 4. **Recipe Management:**
-   - Create new recipes using the "Create" option.
+   - Create new recipes using the "Add recipe" option.
    - Edit and update existing recipes.
    - Delete owned recipes.
 
@@ -44,7 +44,7 @@ Welcome to the documentation for the Food Flow app! Food Flow is an online platf
 
 ### Homepage
 
-- Browse recipes by categories on the homepage.
+- Browse recipes by categories.
 
 ### Recipe Details
 
@@ -67,20 +67,13 @@ Welcome to the documentation for the Food Flow app! Food Flow is an online platf
 - Edit and update existing recipes.
 - Delete recipes using the "Delete" option.
 
-## Folder Structure
+### Dependencies
+- React
+- React Bootstrap
+- Firebase (for authentication and data storage)
+- React Router (for routing)
 
-```plaintext
-food-flow/
-|-- public/
-|-- src/
-|   |-- components/
-|   |-- contexts/
-|   |-- pages/
-|   |-- services/
-|   |-- styles/
-|   |-- App.js
-|   |-- index.js
-|-- .gitignore
-|-- package.json
-|-- README.md
-|-- ...
+### License 
+
+This project is licensed under the MIT License.
+Thank you for using the Food Flow app! Happy cooking and sharing!
