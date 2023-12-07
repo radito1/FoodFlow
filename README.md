@@ -13,9 +13,7 @@ Welcome to the documentation for the Food Flow app! Food Flow is an online platf
   - [User Authentication](#user-authentication)
   - [User Profile](#user-profile)
   - [Recipe Management](#recipe-management)
-- [Folder Structure](#folder-structure)
 - [Dependencies](#dependencies)
-- [Contributing](#contributing)
 - [License](#license)
 
 ## Features
