@@ -2,22 +2,11 @@ import { createContext, useEffect, useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import { auth } from "../firebase";
 import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signOut, updateProfile } from "firebase/auth";
-import { toast } from 'react-toastify';
+import { notifySuccess, notifyError } from '../../utils/toasts';
 
-import 'react-toastify/dist/ReactToastify.css';
 import userService from "../services/userService";
 
 const AuthContext = createContext();
-
-const notifySuccess = (text) => toast.success(`${text}`, {
-    position: 'top-center',
-    autoClose: 3000,
-});
-
-const notifyError = (text) => toast.success(`${text}`, {
-    position: 'top-center',
-    autoClose: 3000,
-});
 
 export const AuthProvider = ({
     children,

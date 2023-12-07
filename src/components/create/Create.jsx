@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
+import { notifySuccess, notifyError } from '../../utils/toasts';
 
 import styles from './create.module.css';
 import dataService from '../../services/dataService';
@@ -68,9 +69,11 @@ const Create = () => {
         dataService.create(recipeData)
             .then(() => {
                 navigate('/catalog/all-recipes');
+                notifySuccess('Recipe added succesfully!');
             })
             .catch(e => {
                 console.log(e);
+                notifyError('There was an error trying to add recipe!');
             });
     };
 
