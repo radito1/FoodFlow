@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
-import { getDatabase, ref, query, orderByChild, startAt, onValue } from 'firebase/database';
+import { getDatabase, ref, query, orderByChild, onValue } from 'firebase/database';
 
 import RecipeCard from '../recipeCard/RecipeCard';
-
+ // !!! Bad search
 const Search = () => {
     const [recipes, setRecipes] = useState([]);
     const { searchTerm } = useParams();
@@ -12,12 +12,15 @@ const Search = () => {
     useEffect(() => {
         const db = getDatabase();
         const recipesRef = ref(db, 'recipes');
-        
-        const searchQuery = query(recipesRef, orderByChild('searchByName'), startAt(searchTerm.toLowerCase()));
+
+        const searchQuery = query(recipesRef, orderByChild('searchByName'));
 
         onValue(searchQuery, (snapshot) => {
             if (snapshot.exists()) {
-                const resultsArray = Object.entries(snapshot.val()).map(([key, value]) => ({ id: key, ...value }));
+                const resultsArray = Object.entries(snapshot.val())
+                    .map(([key, value]) => ({ id: key, ...value }))
+                    .filter(recipe => recipe.searchByName.includes(searchTerm.toLowerCase()));
+                
                 setRecipes(resultsArray);
             } else {
                 setRecipes([]);
@@ -41,5 +44,3 @@ const Search = () => {
 }
 
 export default Search;
-
-
