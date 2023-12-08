@@ -1,7 +1,6 @@
-import { ref, push, set, update, remove, get, orderByChild, equalTo, query, child } from 'firebase/database';
+import { ref, set, update, get } from 'firebase/database';
 import { database } from '../firebase';
 
-const userRef = ref(database, '/users');
 
 const create = (data, uid) => {
     const userRef = ref(database, `/users/${uid}`);
@@ -18,7 +17,7 @@ const getUserData = async (uid) => {
             return snapshot.val();
         } else {
             console.log("No data available");
-            return null; // or throw an error if needed
+            return null;
         }
     } catch (error) {
         console.error(error);
@@ -26,7 +25,6 @@ const getUserData = async (uid) => {
     }
 };
 
-//TODO: test if it updates the database and not overwrite it ! 
 const updateUserData = async (newData, uid) => {
     const userRef = ref(database, `/users/${uid}`);
 

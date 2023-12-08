@@ -1,8 +1,6 @@
 import { ref, push, set, get } from 'firebase/database';
 import { database } from '../firebase';
 
-const commentRef = ref(database, '/comments');
-
 const getAll = async (id) => {
     const commentsRef = ref(database, `/comments/${id}`);
     const snapshot = await get(commentsRef);

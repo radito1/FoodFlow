@@ -1,13 +1,14 @@
 import { useContext } from "react";
 import { Link } from "react-router-dom";
-import AuthContext from '../../contexts/authContext';
 
+import AuthContext from '../../contexts/authContext';
 import styles from "./navigation.module.css";
 
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
+import SearchField from "../search/SearchField";
 
 const Navigation = () => {
     const {
@@ -26,7 +27,6 @@ const Navigation = () => {
                     <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                     <Navbar.Collapse id="responsive-navbar-nav">
                         <Nav className="me-auto">
-                            <Nav.Link href="#features">Features</Nav.Link>
                             <Nav.Link href="#pricing">How it works</Nav.Link>
                             <NavDropdown className={styles.dropdown} title="Categories" id="collapsible-nav-dropdown">
                                 <NavDropdown.Item as={Link} to="/catalog/all-recipes">All recipes</NavDropdown.Item>
@@ -52,6 +52,7 @@ const Navigation = () => {
                                     <Nav.Link as={Link} to="/register">Register</Nav.Link>
                                 </> :
                                 <>
+                                    <SearchField/>
                                     <NavDropdown title={`${username}` || `${email}`} id="collapsible-nav-dropdown">
                                         <NavDropdown.Item as={Link} to="/my-profile">My profile</NavDropdown.Item>
                                         <NavDropdown.Item as={Link} to="/add-recipe">Add recipe</NavDropdown.Item>
