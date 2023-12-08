@@ -74,8 +74,23 @@ export const AuthProvider = ({
                 notifySuccess('Register Successful!');
             })
             .catch((error) => {
-                console.log(error);
-                notifyError('There was an error while trying to register!');
+                const errorCode = error.code;
+                const errorMessage = error.message;
+
+                switch (errorCode) {
+                    case 'auth/user-not-found':
+                        notifyError('Invalid email or password. Please try again.');
+                        break;
+                    case 'auth/wrong-password':
+                        notifyError('Invalid email or password. Please try again.');
+                        break;
+                    case 'auth/email-already-in-use':
+                        notifyError('User already exists.');
+                        break;
+                    default:
+                        notifyError(errorMessage);
+                        break;
+                }
             });
     };
 
