@@ -130,6 +130,7 @@ const RecipeDetails = () => {
                     </div>
                     : ''
                 }
+                
             </Card>
 
             {comments && (
