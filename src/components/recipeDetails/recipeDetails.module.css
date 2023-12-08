@@ -8,8 +8,7 @@
     display: flex;
     justify-content: center;
     gap: 20px;
-    padding-top: 20px;
-    padding-bottom: 20px;
+    padding: 10px 20px;
 }
 
 .comment-container {
@@ -22,8 +21,9 @@
 
 .username {
     display: flex;
-    align-items: center;
+    align-items: top;
     padding: 10px;
+    font-weight: bold;
     border-right: 1px solid rgba(0, 0, 0, 0.175);
 }
 

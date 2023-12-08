@@ -143,7 +143,7 @@ const Create = () => {
                     />
                     <Form.Text className="text-danger">{errors.recipeText?.message}</Form.Text>
                 </Form.Group>
-                <Button variant="primary" type="submit">
+                <Button variant="success" type="submit">
                     Submit
                 </Button>
             </Form>

@@ -67,7 +67,7 @@ const UserProfile = () => {
             <div className={styles["row margin-top"]}>
                 <p>{userData.description}</p>
             </div>
-            <Button variant="primary" onClick={() => setModalShow(true)}>
+            <Button variant="success" onClick={() => setModalShow(true)}>
                 Edit profile
             </Button>
 

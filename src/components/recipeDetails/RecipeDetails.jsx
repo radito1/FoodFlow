@@ -121,7 +121,7 @@ const RecipeDetails = () => {
                 {myRecipes
                     ?
                     <div className={styles['buttons']}>
-                        <Button variant="primary" onClick={() => setModalShow(true)}>
+                        <Button variant="success" onClick={() => setModalShow(true)}>
                             Edit
                         </Button>
                         <Button variant="danger" onClick={() => setSecondModalShow(true)}>
@@ -159,7 +159,7 @@ const RecipeDetails = () => {
                             <Form.Control as="textarea" rows={3} {...register('comment')} onChange={handleInputChange} />
                             <div className={styles.inform}>
                                 <Form.Text className="text-danger">{errors.comment?.message}</Form.Text>
-                                <Button variant="primary" type="submit">
+                                <Button variant="success" type="submit">
                                     Add
                                 </Button>
                             </div>

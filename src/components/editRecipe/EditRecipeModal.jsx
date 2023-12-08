@@ -117,7 +117,7 @@ const EditRecipeModal = (props) => {
                         <Form.Control as="textarea" {...register('recipeText')} rows={3} />
                         <Form.Text className="text-danger">{errors.recipeText?.message}</Form.Text>
                     </Form.Group>
-                    <Button type='submit'>Save</Button>
+                    <Button variant="success" type='submit'>Save</Button>
                 </Form>
             </Modal.Body>
         </Modal>

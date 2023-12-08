@@ -4,7 +4,6 @@ import * as Yup from 'yup';
 import { useForm } from 'react-hook-form';
 import { notifySuccess, notifyError } from '../../utils/toasts';
 
-import "./editUserModal.css"
 import userService from '../../services/userService';
 
 import Form from 'react-bootstrap/Form';
@@ -77,7 +76,7 @@ const EditProfileModal = (props) => {
                         <Form.Control id='description' as="textarea" {...register('description')} autoComplete="custom-autocomplete-4" />
                         <Form.Text className="text-danger">{errors.description?.message}</Form.Text>
                     </Form.Group>
-                    <Button type="submit">Save</Button>
+                    <Button variant="success" type="submit">Save</Button>
                 </Form>
             </Modal.Body>
         </Modal>

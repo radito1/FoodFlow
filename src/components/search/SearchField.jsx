@@ -29,7 +29,7 @@ const SearchField = () => {
                     <>
                         <Form.Control
                             type="search"
-                            placeholder="Search"
+                            placeholder="E.g. Burger,Soup"
                             aria-label="Search"
                             {...field}
                         />
