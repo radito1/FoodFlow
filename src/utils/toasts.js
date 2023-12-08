@@ -7,7 +7,7 @@ export const notifySuccess = (text) => toast.success(`${text}`, {
     autoClose: 3000,
 });
 
-export const notifyError = (text) => toast.success(`${text}`, {
+export const notifyError = (text) => toast.error(`${text}`, {
     position: 'top-center',
     autoClose: 3000,
 });
