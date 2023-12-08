@@ -12,21 +12,26 @@ export const AuthProvider = ({
     children,
 }) => {
     const navigate = useNavigate();
-    const [authenticatedUser, setAuthenticatedUser] = useState({});
+    const [authenticatedUser, setAuthenticatedUser] = useState(() => {
+        const storedUser = JSON.parse(localStorage.getItem('authenticatedUser'));
+        return storedUser || {};
+    });
 
     useEffect(() => {
         const listenAuth = onAuthStateChanged(auth, (user) => {
             if (user) {
-                setAuthenticatedUser(user)
+                setAuthenticatedUser(user);
+                localStorage.setItem('authenticatedUser', JSON.stringify(user));
             } else {
-                setAuthenticatedUser({})
+                setAuthenticatedUser({});
+                localStorage.removeItem('authenticatedUser');
             }
         })
 
         return () => {
             listenAuth();
         }
-    }, []);
+    }, [auth]);
 
     const loginSubmitHandler = async (values) => {
         const auth = getAuth();
@@ -78,6 +83,7 @@ export const AuthProvider = ({
         signOut(auth)
             .then(() => {
                 setAuthenticatedUser({});
+                localStorage.removeItem('authenticatedUser');
                 notifySuccess('Logout Successful!');
             })
             .catch(error => console.log(error));
@@ -90,7 +96,7 @@ export const AuthProvider = ({
         username: authenticatedUser.displayName || authenticatedUser.email,
         email: authenticatedUser.email,
         userId: authenticatedUser.uid,
-        isAuthenticated: !!authenticatedUser.accessToken,
+        isAuthenticated: !!authenticatedUser.accessToken || !!authenticatedUser.uid,
     };
 
     return (

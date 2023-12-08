@@ -9,6 +9,7 @@ const AuthGuard = () => {
         return <Navigate to="/" />;
     }
 
+
     return <Outlet />;
 }
 
