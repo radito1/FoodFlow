@@ -28,7 +28,7 @@ const RecipeCard = ({ recipeName, time, recipePicture, ownerName, id }) => {
                 <Card.Text>
                     Posted by: {ownerName}
                 </Card.Text>
-            </Card.Body>
+            </Card.Body> 
         </Card>
     );
 }

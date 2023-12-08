@@ -40,3 +40,7 @@
     justify-content: space-between;
     margin-top: 10px;
 }
+
+.posted-on{
+    padding: 5px 15px;
+}

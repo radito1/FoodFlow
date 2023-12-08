@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
-import { getDatabase, ref, query, orderByChild, equalTo, onValue } from 'firebase/database';
+import { getDatabase, ref, query, orderByChild, startAt, onValue } from 'firebase/database';
 
 import RecipeCard from '../recipeCard/RecipeCard';
 
@@ -12,8 +12,8 @@ const Search = () => {
     useEffect(() => {
         const db = getDatabase();
         const recipesRef = ref(db, 'recipes');
-
-        const searchQuery = query(recipesRef, orderByChild('searchByName'), equalTo(searchTerm.toLowerCase()));
+        
+        const searchQuery = query(recipesRef, orderByChild('searchByName'), startAt(searchTerm.toLowerCase()));
 
         onValue(searchQuery, (snapshot) => {
             if (snapshot.exists()) {

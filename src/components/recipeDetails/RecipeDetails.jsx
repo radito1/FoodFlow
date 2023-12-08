@@ -17,6 +17,7 @@ import Button from 'react-bootstrap/Button';
 import { Form } from 'react-bootstrap';
 import EditRecipeModal from '../editRecipe/EditRecipeModal';
 import ConfirmationModal from '../confirmationModal/ConfirmationModal';
+import formatDate from '../../utils/formatData';
 
 const commentSchema = Yup.object().shape({
     comment: Yup.string().required('Comment is required'),
@@ -113,6 +114,9 @@ const RecipeDetails = () => {
                 </Card.Body>
                 <ListGroup className="list-group-flush">
                     <ListGroup.Item>{recipeData?.recipeText}</ListGroup.Item>
+                    <Card.Text className={styles['posted-on']}>
+                        Posted on: {formatDate(recipeData?.timestamp)}
+                    </Card.Text>
                 </ListGroup>
                 {myRecipes
                     ?
@@ -163,7 +167,6 @@ const RecipeDetails = () => {
                 </article>
                 : ''
             }
-
 
             <EditRecipeModal
                 show={modalShow}
