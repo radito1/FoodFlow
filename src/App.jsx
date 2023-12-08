@@ -16,6 +16,7 @@ import RecipeDetails from "./components/recipeDetails/RecipeDetails"
 import Footer from "./components/footer/Footer";
 import NotFound from "./components/notFound/NotFound";
 import AuthGuard from './components/guards/AuthGuard';
+import Search from "./components/search/Search";
 
 const App = () => {
     return (
@@ -34,6 +35,7 @@ const App = () => {
                         <Route path="*" element={<NotFound />} />
 
                         <Route element={<AuthGuard />}>
+                            <Route path="/search/:searchTerm" element={<Search />} />
                             <Route path="/add-recipe" element={<Create />} />
                             <Route path="/user/catalog/:myRecipes" element={<Catalog userRecipes />} />
                             <Route path="/user/catalog/:myRecipes/:id" element={<RecipeDetails />} />

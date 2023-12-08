@@ -43,9 +43,11 @@ const Create = () => {
 
     const onSubmit = (data) => {
         let categoryFix = data.category.toLowerCase().replace(/\s+/g, '-').replace(/\//g, '-');
+        let searchName = data.recipeName.toLowerCase();
 
         let recipeData = {
             recipeName: data.recipeName,
+            searchByName: searchName,
             recipeText: data.recipeText,
             category: categoryFix,
             recipePicture: data.recipePicture,

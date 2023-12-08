@@ -1,4 +1,5 @@
 import { useContext, useEffect, useState } from 'react';
+
 import { useParams } from 'react-router-dom';
 
 import styles from './catalog.module.css';
