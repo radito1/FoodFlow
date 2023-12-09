@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-
 import { getDatabase, ref, query, orderByChild, onValue } from 'firebase/database';
+
+import styles from './search.module.css';
 
 import RecipeCard from '../recipeCard/RecipeCard';
  // !!! Bad search
@@ -30,7 +31,7 @@ const Search = () => {
 
     return (
         <>
-            <div >
+            <div className={styles['search-container']}>
                 {recipes.length === 0
                     ?
                     <p>No recipes in this search!</p>
